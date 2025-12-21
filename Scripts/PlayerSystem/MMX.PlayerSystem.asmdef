@@ -1,0 +1,24 @@
+{
+    "name": "MMX.PlayerSystem",
+    "rootNamespace": "MMX.PlayerSystem",
+    "references": [
+        "GUID:4eb5edba304c8a249b4e3a5c573563a4",
+        "GUID:09275cd1284174a43bc0d48b89073298",
+        "GUID:399ce299f954484438a97a6f9e0090dd",
+        "GUID:d989ee66b9b10ce4f97712c0ddd5a8c9",
+        "GUID:bbb65ba36d666e44ba43383008f5897c",
+        "GUID:6fde1331c7c87234190b19876224f946",
+        "GUID:5929e09446cf15d4f8bc4a3b95536805",
+        "GUID:b96e351a3d2004745868d80b74fe085f",
+        "GUID:532f6d8e08e0c7a4f9d899a29f08db3c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
