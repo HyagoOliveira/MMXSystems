@@ -14,7 +14,7 @@ namespace MMX.InputSystem
         public event Action<bool> OnSideAttacked;
         public event Action<bool> OnGigaAttacked;
         public event Action OnSwitched;
-        public event Action OnPaused;
+        public event Action OnStarted;
         public event Action OnOptions;
 
         private readonly InputActions.PlayerActions actions;
@@ -61,7 +61,7 @@ namespace MMX.InputSystem
             var sideAttackButton = actions.SideAttack.IsPressed();
             var gigaAttackButton = actions.GigaAttack.IsPressed();
             var switchButton = actions.Switch.IsPressed();
-            var pauseButton = actions.Pause.IsPressed();
+            var startButton = actions.Start.IsPressed();
             var optionsButton = actions.Options.IsPressed();
 
             UpdateInputs(
@@ -72,7 +72,7 @@ namespace MMX.InputSystem
                 sideAttackButton,
                 gigaAttackButton,
                 switchButton,
-                pauseButton,
+                startButton,
                 optionsButton
             );
         }
@@ -85,7 +85,7 @@ namespace MMX.InputSystem
             bool sideAttackButton,
             bool gigaAttackButton,
             bool switchButton,
-            bool pauseButton,
+            bool startButton,
             bool optionsButton
         )
         {
@@ -97,7 +97,7 @@ namespace MMX.InputSystem
             OnGigaAttacked?.Invoke(gigaAttackButton);
 
             if (switchButton) OnSwitched?.Invoke();
-            if (pauseButton) OnPaused?.Invoke();
+            if (startButton) OnStarted?.Invoke();
             if (optionsButton) OnOptions?.Invoke();
         }
 
