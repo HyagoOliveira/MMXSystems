@@ -1,22 +1,19 @@
 {
-  "name": "com.actioncode.[packagename]",
-  "displayName": "ActionCode-[PackageName]",
+  "name": "com.actioncode.mmx-systems",
+  "displayName": "_MMX Systems",
   "version": "0.1.0",
-  "unity": "6000.1",
-  "description": "This package contains [...].",
-  "keywords": [
-    "",
-    ""
-  ],
+  "unity": "6000.3",
+  "description": "This package contains assets for Mega Man X Unity games.",
+  "keywords": [ "Mega Man" ],
   "dependencies": {},
   "license": "MIT",
-  "homepage": "https://github.com/HyagoOliveira/[PACKAGE]#readme",
+  "homepage": "https://github.com/HyagoOliveira/MMXSystems#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HyagoOliveira/[PACKAGE].git"
+    "url": "https://github.com/HyagoOliveira/MMXSystems.git"
   },
-  "documentationUrl": "https://github.com/HyagoOliveira/[PACKAGE]#readme",
-  "changelogUrl": "https://github.com/HyagoOliveira/[PACKAGE]/blob/main/CHANGELOG.md",
+  "documentationUrl": "https://github.com/HyagoOliveira/MMXSystems#readme",
+  "changelogUrl": "https://github.com/HyagoOliveira/MMXSystems/blob/main/CHANGELOG.md",
   "author": {
     "name": "Hyago Oliveira",
     "email": "hyagogow@gmail.com"
