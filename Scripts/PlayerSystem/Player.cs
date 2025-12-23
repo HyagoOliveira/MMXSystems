@@ -27,12 +27,10 @@ namespace MMX.PlayerSystem
         [field: SerializeField] public AnimatorStateMachine StateMachine { get; private set; }
         [field: SerializeField] public BoxCollider2DAdapter ColliderAdapter { get; private set; }
 
-        [field: Space]
-        [field: SerializeField] public AbstractArmor CurrentArmor { get; private set; }
-
         // Player should not references PlayerHandlers (PlayerAnimationHandler, PlayerInputHandler, etc)
         // PlayerHandlers should access the Player component and handler everything necessary from there.
 
+        public AbstractArmor CurrentArmor { get; private set; }
         public BoxCollider2D Collider => ColliderAdapter.Collider;
 
         private AbstractArmorLoader armorLoader;
@@ -44,8 +42,6 @@ namespace MMX.PlayerSystem
             Events = GetComponent<AnimationEvents>();
             StateMachine = GetComponent<AnimatorStateMachine>();
             ColliderAdapter = GetComponent<BoxCollider2DAdapter>();
-
-            CurrentArmor = GetComponentInChildren<AbstractArmor>();
         }
 
         private void Awake()
@@ -58,7 +54,7 @@ namespace MMX.PlayerSystem
 
         public async void LoadArmor(ArmorName armor) => CurrentArmor = await armorLoader.LoadAsync(armor);
 
-        #region INPUTS
+        #region Inputs
         public void SetMoveInput(Vector2 input)
         {
             Motor.SetMoveInput(input);
