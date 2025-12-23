@@ -10,7 +10,7 @@ namespace MMX.PlayerSystem
 {
     /// <summary>
     /// Player main component.
-    /// All player-related components should be accessed through this component.
+    /// All player main components should be accessed through this component.
     /// </summary>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Motor))]
@@ -29,6 +29,9 @@ namespace MMX.PlayerSystem
 
         [field: Space]
         [field: SerializeField] public AbstractArmor CurrentArmor { get; private set; }
+
+        // Player should not references PlayerHandlers (PlayerAnimationHandler, PlayerInputHandler, etc)
+        // PlayerHandlers should access the Player component and handler everything necessary from there.
 
         public BoxCollider2D Collider => ColliderAdapter.Collider;
 
