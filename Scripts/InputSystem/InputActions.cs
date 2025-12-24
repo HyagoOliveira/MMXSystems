@@ -158,7 +158,7 @@ namespace MMX.InputSystem
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SwitchIdle"",
+                    ""name"": ""ToggleIdle"",
                     ""type"": ""Button"",
                     ""id"": ""2e7b1f1e-437d-4be5-a294-5900c64f14e8"",
                     ""expectedControlType"": """",
@@ -501,7 +501,7 @@ namespace MMX.InputSystem
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""SwitchIdle"",
+                    ""action"": ""ToggleIdle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -512,7 +512,7 @@ namespace MMX.InputSystem
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""SwitchIdle"",
+                    ""action"": ""ToggleIdle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1297,7 +1297,7 @@ namespace MMX.InputSystem
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
             m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
-            m_Player_SwitchIdle = m_Player.FindAction("SwitchIdle", throwIfNotFound: true);
+            m_Player_ToggleIdle = m_Player.FindAction("ToggleIdle", throwIfNotFound: true);
             m_Player_Start = m_Player.FindAction("Start", throwIfNotFound: true);
             m_Player_Options = m_Player.FindAction("Options", throwIfNotFound: true);
             // UI
@@ -1404,7 +1404,7 @@ namespace MMX.InputSystem
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Dash;
         private readonly InputAction m_Player_Switch;
-        private readonly InputAction m_Player_SwitchIdle;
+        private readonly InputAction m_Player_ToggleIdle;
         private readonly InputAction m_Player_Start;
         private readonly InputAction m_Player_Options;
         /// <summary>
@@ -1447,9 +1447,9 @@ namespace MMX.InputSystem
             /// </summary>
             public InputAction @Switch => m_Wrapper.m_Player_Switch;
             /// <summary>
-            /// Provides access to the underlying input action "Player/SwitchIdle".
+            /// Provides access to the underlying input action "Player/ToggleIdle".
             /// </summary>
-            public InputAction @SwitchIdle => m_Wrapper.m_Player_SwitchIdle;
+            public InputAction @ToggleIdle => m_Wrapper.m_Player_ToggleIdle;
             /// <summary>
             /// Provides access to the underlying input action "Player/Start".
             /// </summary>
@@ -1505,9 +1505,9 @@ namespace MMX.InputSystem
                 @Switch.started += instance.OnSwitch;
                 @Switch.performed += instance.OnSwitch;
                 @Switch.canceled += instance.OnSwitch;
-                @SwitchIdle.started += instance.OnSwitchIdle;
-                @SwitchIdle.performed += instance.OnSwitchIdle;
-                @SwitchIdle.canceled += instance.OnSwitchIdle;
+                @ToggleIdle.started += instance.OnToggleIdle;
+                @ToggleIdle.performed += instance.OnToggleIdle;
+                @ToggleIdle.canceled += instance.OnToggleIdle;
                 @Start.started += instance.OnStart;
                 @Start.performed += instance.OnStart;
                 @Start.canceled += instance.OnStart;
@@ -1546,9 +1546,9 @@ namespace MMX.InputSystem
                 @Switch.started -= instance.OnSwitch;
                 @Switch.performed -= instance.OnSwitch;
                 @Switch.canceled -= instance.OnSwitch;
-                @SwitchIdle.started -= instance.OnSwitchIdle;
-                @SwitchIdle.performed -= instance.OnSwitchIdle;
-                @SwitchIdle.canceled -= instance.OnSwitchIdle;
+                @ToggleIdle.started -= instance.OnToggleIdle;
+                @ToggleIdle.performed -= instance.OnToggleIdle;
+                @ToggleIdle.canceled -= instance.OnToggleIdle;
                 @Start.started -= instance.OnStart;
                 @Start.performed -= instance.OnStart;
                 @Start.canceled -= instance.OnStart;
@@ -1949,12 +1949,12 @@ namespace MMX.InputSystem
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnSwitch(InputAction.CallbackContext context);
             /// <summary>
-            /// Method invoked when associated input action "SwitchIdle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// Method invoked when associated input action "ToggleIdle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnSwitchIdle(InputAction.CallbackContext context);
+            void OnToggleIdle(InputAction.CallbackContext context);
             /// <summary>
             /// Method invoked when associated input action "Start" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>

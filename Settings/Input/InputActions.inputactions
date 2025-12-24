@@ -70,7 +70,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwitchIdle",
+                    "name": "ToggleIdle",
                     "type": "Button",
                     "id": "2e7b1f1e-437d-4be5-a294-5900c64f14e8",
                     "expectedControlType": "",
@@ -413,7 +413,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "SwitchIdle",
+                    "action": "ToggleIdle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -424,7 +424,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "SwitchIdle",
+                    "action": "ToggleIdle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -43,6 +43,7 @@ namespace MMX.PlayerSystem
             playerActions.OnSideAttacked += player.SetSideAttackInput;
             playerActions.OnGigaAttacked += player.SetGigaAttackInput;
             playerActions.OnSwitched += player.SwitchInput;
+            playerActions.OnIdleToggled += player.ToggleIdle;
         }
 
         private void UnsubscriveEvents()
@@ -54,6 +55,7 @@ namespace MMX.PlayerSystem
             playerActions.OnSideAttacked -= player.SetSideAttackInput;
             playerActions.OnGigaAttacked -= player.SetGigaAttackInput;
             playerActions.OnSwitched -= player.SwitchInput;
+            playerActions.OnIdleToggled += player.ToggleIdle;
         }
 
         private void Dispose()

@@ -15,8 +15,9 @@ namespace MMX.PlayerSystem
             Body.Horizontal.StopSpeed();
         }
 
-        public void ToggleBetweenMainAndSideIdle()
+        public void Toggle()
         {
+            //TODO maybe check if is Idle
             if (IsMainIdle()) EnableSideIdle();
             else if (IsSideIdle()) EnableMainIdle();
         }

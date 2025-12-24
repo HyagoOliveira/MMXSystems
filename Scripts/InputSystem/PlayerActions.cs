@@ -14,7 +14,7 @@ namespace MMX.InputSystem
         public event Action<bool> OnSideAttacked;
         public event Action<bool> OnGigaAttacked;
         public event Action OnSwitched;
-        public event Action OnIdleSwitched;
+        public event Action OnIdleToggled;
 
         private readonly InputActions.PlayerActions actions;
         private RebindingOperation rebindingOperation;
@@ -60,7 +60,7 @@ namespace MMX.InputSystem
             var sideAttackButton = actions.SideAttack.IsPressed();
             var gigaAttackButton = actions.GigaAttack.IsPressed();
             var switchButton = actions.Switch.IsPressed();
-            var idleSwitchButton = actions.SwitchIdle.IsPressed();
+            var toggleIdleButton = actions.ToggleIdle.WasPressedThisFrame();
 
             UpdateInputs(
                 moveAxis,
@@ -70,7 +70,7 @@ namespace MMX.InputSystem
                 sideAttackButton,
                 gigaAttackButton,
                 switchButton,
-                idleSwitchButton
+                toggleIdleButton
             );
         }
 
@@ -82,7 +82,7 @@ namespace MMX.InputSystem
             bool sideAttackButton,
             bool gigaAttackButton,
             bool switchButton,
-            bool idleSwitchButton
+            bool toggleIdleButton
         )
         {
             OnMoved?.Invoke(moveAxis);
@@ -93,7 +93,7 @@ namespace MMX.InputSystem
             OnGigaAttacked?.Invoke(gigaAttackButton);
 
             if (switchButton) OnSwitched?.Invoke();
-            if (idleSwitchButton) OnIdleSwitched?.Invoke();
+            if (toggleIdleButton) OnIdleToggled?.Invoke();
         }
 
         #region Legacy System
@@ -108,7 +108,7 @@ namespace MMX.InputSystem
             var mainAttackButton = Input.GetButton("MainAttack");
             var sideAttackButton = Input.GetButton("SideAttack");
             var gigaAttackButton = Input.GetButton("GigaAttack");
-            var idleSwitchButton = Input.GetButton("SwitchIdle");
+            var toggleIdleIdleButton = Input.GetButton("ToggleIdle");
             var switchButton = GetSwitchPlayerAxisDown();
 
 
@@ -120,7 +120,7 @@ namespace MMX.InputSystem
                 sideAttackButton,
                 gigaAttackButton,
                 switchButton,
-                idleSwitchButton
+                toggleIdleIdleButton
             );
         }
 

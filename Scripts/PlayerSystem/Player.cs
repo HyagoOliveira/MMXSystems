@@ -44,14 +44,14 @@ namespace MMX.PlayerSystem
 
         #region States
         /*public RayInState RayIn => StateMachine.GetState<RayInState>();
-        public GetOutState GetOut => StateMachine.GetState<GetOutState>();
-        public IdleState Idle => StateMachine.GetState<IdleState>();*/
+        public GetOutState GetOut => StateMachine.GetState<GetOutState>();*/
+        public IdleState Idle => StateMachine.GetState<IdleState>();
         public JumpState Jump => StateMachine.GetState<JumpState>();
         public FallState Fall => StateMachine.GetState<FallState>();
         //public StartDashState StartDash => StateMachine.GetState<StartDashState>();
         public DashState Dash => StateMachine.GetState<DashState>();
-        /*public EndDashState EndDash => StateMachine.GetState<EndDashState>();
-        public LandState Land => StateMachine.GetState<LandState>();*/
+        /*public EndDashState EndDash => StateMachine.GetState<EndDashState>();*/
+        public LandState Land => StateMachine.GetState<LandState>();
         public CrouchState Crouch => StateMachine.GetState<CrouchState>();
         public WallGrabState WallGrab => StateMachine.GetState<WallGrabState>();
         public WallSlideState WallSlide => StateMachine.GetState<WallSlideState>();
@@ -116,6 +116,7 @@ namespace MMX.PlayerSystem
         public void SetSideAttackInput(bool hasInput) => CurrentArmor.SetSideWeaponInput(hasInput);
         public void SetGigaAttackInput(bool hasInput) => CurrentArmor.SetGigaWeaponInput(hasInput);
         public void SwitchInput() { }
+        public void ToggleIdle() => Idle.Toggle();
         #endregion
     }
 }
