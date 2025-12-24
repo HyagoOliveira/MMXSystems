@@ -107,7 +107,7 @@ namespace MMX.PlayerSystem
 
         public void SetJumpInput(bool hasInput)
         {
-            //Jump.Input.Set(hasInput);
+            Jump.Input.Set(hasInput);
             //WallJump.SetInput(hasInput);
         }
 
