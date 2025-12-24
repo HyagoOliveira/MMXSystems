@@ -11,10 +11,10 @@ namespace MMX.PlayerSystem
         private Animator Animator => player.StateMachine.Animator;
 
         #region Param Properties
-        public int IdleIndex
+        public float IdleIndex
         {
-            get => Animator.GetInteger(idleIndex);
-            internal set => Animator.SetInteger(idleIndex, value);
+            get => Animator.GetFloat(idleIndex);
+            internal set => Animator.SetFloat(idleIndex, value);
         }
 
         public bool IsGrounded
