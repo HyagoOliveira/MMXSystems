@@ -3,6 +3,7 @@ using MMX.CoreSystem;
 using MMX.CharacterSystem;
 using ActionCode.Physics;
 using ActionCode.Sidescroller;
+using ActionCode.EnergySystem;
 using ActionCode.AnimatorStates;
 using ActionCode.ColliderAdapter;
 
@@ -14,7 +15,9 @@ namespace MMX.PlayerSystem
     /// </summary>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Motor))]
+    [RequireComponent(typeof(Energy))]
     [RequireComponent(typeof(BoxBody))]
+    [RequireComponent(typeof(Damageable))]
     [RequireComponent(typeof(AnimationEvents))]
     [RequireComponent(typeof(AnimatorStateMachine))]
     [RequireComponent(typeof(BoxCollider2DAdapter))]
@@ -26,6 +29,10 @@ namespace MMX.PlayerSystem
         [field: SerializeField] public AnimationEvents Events { get; private set; }
         [field: SerializeField] public AnimatorStateMachine StateMachine { get; private set; }
         [field: SerializeField] public BoxCollider2DAdapter ColliderAdapter { get; private set; }
+
+        [field: Header("Health")]
+        [field: SerializeField] public Energy Energy { get; private set; }
+        [field: SerializeField] public Damageable Damageable { get; private set; }
 
         // Player should not references PlayerHandlers (PlayerAnimationHandler, PlayerInputHandler, etc)
         // PlayerHandlers should access the Player component and handler everything necessary from there.
@@ -53,6 +60,12 @@ namespace MMX.PlayerSystem
         //TODO load armor from GameData
 
         public async void LoadArmor(ArmorName armor) => CurrentArmor = await armorLoader.LoadAsync(armor);
+
+        public void Enable() => gameObject.SetActive(true);
+        public void Disable() => gameObject.SetActive(false);
+
+        public void EnableInteractions() { }
+        public void DisableInteractions() { }
 
         #region Inputs
         public void SetMoveInput(Vector2 input)
