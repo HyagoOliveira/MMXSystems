@@ -41,12 +41,6 @@ namespace MMX.PlayerSystem
             internal set => Animator.SetBool(isHurting, value);
         }
 
-        public bool IsRunning
-        {
-            get => Animator.GetBool(isRunning);
-            internal set => Animator.SetBool(isRunning, value);
-        }
-
         public bool IsDashing
         {
             get => Animator.GetBool(isDashing);
@@ -79,7 +73,6 @@ namespace MMX.PlayerSystem
         private static readonly int isAirborne = Animator.StringToHash("IsAirborne");
         private static readonly int isFalling = Animator.StringToHash("IsFalling");
         private static readonly int isHurting = Animator.StringToHash("IsHurting");
-        private static readonly int isRunning = Animator.StringToHash("IsRunning");
         private static readonly int isDashing = Animator.StringToHash("IsDashing");
         private static readonly int isPushingWall = Animator.StringToHash("IsPushingWall");
         private static readonly int isFacingCollision = Animator.StringToHash("IsFacingCollision");
