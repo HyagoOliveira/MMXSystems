@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace MMX.PlayerSystem
 {
-    [CreateAssetMenu(fileName = "PlayerVoiceSettings", menuName = "MMX/Players/Sounds")]
-    public sealed class PlayerVoiceSettings : ScriptableObject
+    [CreateAssetMenu(fileName = "PlayerVoicesData", menuName = "MMX/Players/Sounds")]
+    public sealed class PlayerVoicesData : ScriptableObject
     {
         [Header("Jumps")]
         public AudioClip wallJump;

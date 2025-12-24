@@ -2,8 +2,8 @@
 
 namespace MMX.PlayerSystem
 {
-    [CreateAssetMenu(fileName = "PlayerCommonSoundSettings", menuName = "MMX/Players/Sounds")]
-    public sealed class PlayerCommonSoundSettings : ScriptableObject
+    [CreateAssetMenu(fileName = "PlayerCommonSoundsData", menuName = "MMX/Players/Common Sounds")]
+    public sealed class PlayerCommonSoundsData : ScriptableObject
     {
         [Header("Dash")]
         public AudioClip dashStart;

@@ -2,11 +2,11 @@
 
 namespace MMX.PlayerSystem
 {
-    [CreateAssetMenu(fileName = "PlayerSoundSettings", menuName = "MMX/Players/Sounds")]
-    public sealed class PlayerSoundSettings : ScriptableObject
+    [CreateAssetMenu(fileName = "PlayerSoundsData", menuName = "MMX/Players/Sounds")]
+    public sealed class PlayerSoundsData : ScriptableObject
     {
-        public PlayerVoiceSettings voice;
-        public PlayerCommonSoundSettings common;
+        public PlayerVoicesData voice;
+        public PlayerCommonSoundsData common;
 
         [Header("Spawn")]
         public AudioClip rayEnter;

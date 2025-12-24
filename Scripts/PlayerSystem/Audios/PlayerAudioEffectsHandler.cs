@@ -10,7 +10,7 @@ namespace MMX.PlayerSystem
     public sealed class PlayerAudioEffectsHandler : MonoBehaviour
     {
         [SerializeField] private Player player;
-        [SerializeField] private PlayerSoundSettings settings;
+        [SerializeField] private PlayerSoundsData sounds;
 
         [Header("Audio Sources")]
         [SerializeField] private AudioSource headSource;
@@ -18,7 +18,7 @@ namespace MMX.PlayerSystem
         [SerializeField] private AudioSource bootsSource;
         [SerializeField] private AudioSource dashMiddleSource;
 
-        private void Awake() => dashMiddleSource.clip = settings.common.dashMiddle;
+        private void Awake() => dashMiddleSource.clip = sounds.common.dashMiddle;
 
         private void OnEnable()
         {
@@ -68,20 +68,20 @@ namespace MMX.PlayerSystem
         private void HandleRayInEntered() => PlayRayEnter();
 
         #region Animation Event Functions
-        public void PlayVictory() => headSource.PlayOneShot(settings.victory);
+        public void PlayVictory() => headSource.PlayOneShot(sounds.victory);
         #endregion
 
-        public void PlayRayEnter() => bodySource.PlayOneShot(settings.rayEnter);
-        public void PlayRayOut() => bodySource.PlayOneShot(settings.rayOut);
+        public void PlayRayEnter() => bodySource.PlayOneShot(sounds.rayEnter);
+        public void PlayRayOut() => bodySource.PlayOneShot(sounds.rayOut);
 
-        public void PlayStartDash() => bootsSource.PlayOneShot(settings.common.dashStart);
-        public void PlayEndDash() => bootsSource.PlayOneShot(settings.common.dashEnd);
+        public void PlayStartDash() => bootsSource.PlayOneShot(sounds.common.dashStart);
+        public void PlayEndDash() => bootsSource.PlayOneShot(sounds.common.dashEnd);
         public void PlayMiddleDash() => dashMiddleSource.Play();
         public void StopMiddleDash() => dashMiddleSource.Stop();
 
-        public void PlayDeath() => headSource.PlayOneShot(settings.voice.death);
-        public void PlayLowEnergy() => headSource.PlayOneShot(settings.voice.lowEnergy);
-        public void PlayRandomHurtShout() => headSource.PlayOneShot(settings.voice.GetRandomHurtShout());
+        public void PlayDeath() => headSource.PlayOneShot(sounds.voice.death);
+        public void PlayLowEnergy() => headSource.PlayOneShot(sounds.voice.lowEnergy);
+        public void PlayRandomHurtShout() => headSource.PlayOneShot(sounds.voice.GetRandomHurtShout());
 
         public void TryPlayBusterChargedAttackShout()
         {
@@ -91,7 +91,7 @@ namespace MMX.PlayerSystem
 
         public void TryPlaySaberAttackShout(int attackIndex)
         {
-            var hasShout = settings.voice.TryGetSaberAttack(attackIndex, out AudioClip shout);
+            var hasShout = sounds.voice.TryGetSaberAttack(attackIndex, out AudioClip shout);
             if (hasShout) headSource.PlayOneShot(shout);
         }
 
@@ -120,21 +120,21 @@ namespace MMX.PlayerSystem
 
         private void HandleLandEntered() => PlayLand();
 
-        private void PlayBootsJump() => bootsSource.PlayOneShot(settings.jump);
+        private void PlayBootsJump() => bootsSource.PlayOneShot(sounds.jump);
 
         private void PlayJumpShout()
         {
             var shout = player.Jump.WasAirJump ?
-                settings.voice.airJump :
-                settings.voice.GetRandomJumpShout();
+                sounds.voice.airJump :
+                sounds.voice.GetRandomJumpShout();
 
             headSource.PlayOneShot(shout);
         }
 
-        private void PlayWallGrab() => bodySource.PlayOneShot(settings.wallGrab);
-        private void PlayWallJumpShout() => headSource.PlayOneShot(settings.voice.wallJump);
+        private void PlayWallGrab() => bodySource.PlayOneShot(sounds.wallGrab);
+        private void PlayWallJumpShout() => headSource.PlayOneShot(sounds.voice.wallJump);
 
-        private void PlayLand() => bootsSource.PlayOneShot(settings.land);
-        private void PlayBusterAttack() => headSource.PlayOneShot(settings.voice.busterAttack);
+        private void PlayLand() => bootsSource.PlayOneShot(sounds.land);
+        private void PlayBusterAttack() => headSource.PlayOneShot(sounds.voice.busterAttack);
     }
 }
