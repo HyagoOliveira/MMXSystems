@@ -18,6 +18,7 @@ namespace MMX.PlayerSystem
     [RequireComponent(typeof(Energy))]
     [RequireComponent(typeof(BoxBody))]
     [RequireComponent(typeof(Damageable))]
+    [RequireComponent(typeof(PlayerAnimator))]
     [RequireComponent(typeof(AnimationEvents))]
     [RequireComponent(typeof(AnimatorStateMachine))]
     [RequireComponent(typeof(BoxCollider2DAdapter))]
@@ -27,6 +28,7 @@ namespace MMX.PlayerSystem
         [field: SerializeField] public Motor Motor { get; private set; }
         [field: SerializeField] public BoxBody Body { get; private set; }
         [field: SerializeField] public AnimationEvents Events { get; private set; }
+        [field: SerializeField] public PlayerAnimator Animator { get; private set; }
         [field: SerializeField] public AnimatorStateMachine StateMachine { get; private set; }
         [field: SerializeField] public BoxCollider2DAdapter ColliderAdapter { get; private set; }
 
@@ -69,6 +71,7 @@ namespace MMX.PlayerSystem
             Motor = GetComponent<Motor>();
             Body = GetComponent<BoxBody>();
             Events = GetComponent<AnimationEvents>();
+            Animator = GetComponent<PlayerAnimator>();
             StateMachine = GetComponent<AnimatorStateMachine>();
             ColliderAdapter = GetComponent<BoxCollider2DAdapter>();
 
