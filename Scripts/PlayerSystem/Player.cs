@@ -99,10 +99,10 @@ namespace MMX.PlayerSystem
         public void SetMoveInput(Vector2 input)
         {
             Motor.SetMoveInput(input);
-            /*ZiplineLocomotion.SetMoveInput(input);
+            //ZiplineLocomotion.SetMoveInput(input);
 
             Crouch.SetInput(input.y);
-            ClimbLadder.SetInput(input.y);*/
+            //ClimbLadder.SetInput(input.y);
         }
 
         public void SetJumpInput(bool hasInput)

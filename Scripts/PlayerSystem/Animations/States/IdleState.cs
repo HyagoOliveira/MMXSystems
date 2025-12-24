@@ -6,7 +6,7 @@ namespace MMX.PlayerSystem
     public sealed class IdleState : AbstractState
     {
         private const int mainIndex = 0;
-        private const int sideIndex = 1;
+        private const int sideIndex = 1; //TODO add side idle animation into MMXD
         private const int damagedIndex = 2;
 
         protected override void EnterState()
