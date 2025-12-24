@@ -14,8 +14,14 @@ namespace MMX.PlayerSystem
         [field: SerializeField] public AbstractWeapon SideWeapon { get; private set; }
         [field: SerializeField] public AbstractWeapon GigaWeapon { get; private set; }
 
+        public Player Player { get; private set; }
+
+        private void Awake() => Player = GetComponentInParent<Player>();
+
         public void SetMainWeaponInput(bool hasInput) { if (MainWeapon) MainWeapon.SetInput(hasInput); }
         public void SetSideWeaponInput(bool hasInput) { if (SideWeapon) SideWeapon.SetInput(hasInput); }
         public void SetGigaWeaponInput(bool hasInput) { if (GigaWeapon) GigaWeapon.SetInput(hasInput); }
+
+        public void ToggleRaiseWeapon() => Player.Animator.ToggleWeapon();
     }
 }

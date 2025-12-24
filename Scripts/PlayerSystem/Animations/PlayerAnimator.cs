@@ -128,11 +128,21 @@ namespace MMX.PlayerSystem
         #endregion
 
         #region Layers
+        public void ToggleWeapon()
+        {
+            if (IsWeaponLowed()) RaiseWeapon();
+            else if (IsWeaponRaised()) LowWeapon();
+        }
+
         public void LowWeapon() => SetWeaponWeight(0f);
         public void RaiseWeapon() => SetWeaponWeight(1f);
 
         private void FindLayers() => weaponLayerIndex = Animator.GetLayerIndex(weaponLayerName);
         private void SetWeaponWeight(float weight) => Animator.SetLayerWeight(weaponLayerIndex, weight);
+
+        private bool IsWeaponLowed() => GetWeaponWeight() == 0f;
+        private bool IsWeaponRaised() => GetWeaponWeight() == 1f;
+        private float GetWeaponWeight() => Animator.GetLayerWeight(weaponLayerIndex);
         #endregion
     }
 }
