@@ -14,8 +14,7 @@ namespace MMX.InputSystem
         public event Action<bool> OnSideAttacked;
         public event Action<bool> OnGigaAttacked;
         public event Action OnSwitched;
-        public event Action OnStarted;
-        public event Action OnOptions;
+        public event Action OnIdleSwitched;
 
         private readonly InputActions.PlayerActions actions;
         private RebindingOperation rebindingOperation;
@@ -61,8 +60,7 @@ namespace MMX.InputSystem
             var sideAttackButton = actions.SideAttack.IsPressed();
             var gigaAttackButton = actions.GigaAttack.IsPressed();
             var switchButton = actions.Switch.IsPressed();
-            var startButton = actions.Start.IsPressed();
-            var optionsButton = actions.Options.IsPressed();
+            var idleSwitchButton = actions.SwitchIdle.IsPressed();
 
             UpdateInputs(
                 moveAxis,
@@ -72,8 +70,7 @@ namespace MMX.InputSystem
                 sideAttackButton,
                 gigaAttackButton,
                 switchButton,
-                startButton,
-                optionsButton
+                idleSwitchButton
             );
         }
 
@@ -85,8 +82,7 @@ namespace MMX.InputSystem
             bool sideAttackButton,
             bool gigaAttackButton,
             bool switchButton,
-            bool startButton,
-            bool optionsButton
+            bool idleSwitchButton
         )
         {
             OnMoved?.Invoke(moveAxis);
@@ -97,25 +93,24 @@ namespace MMX.InputSystem
             OnGigaAttacked?.Invoke(gigaAttackButton);
 
             if (switchButton) OnSwitched?.Invoke();
-            if (startButton) OnStarted?.Invoke();
-            if (optionsButton) OnOptions?.Invoke();
+            if (idleSwitchButton) OnIdleSwitched?.Invoke();
         }
 
         #region Legacy System
         private void UpdateUsingLegacySystem()
         {
             var moveAxis = new Vector2(
-                GetDigital(UnityEngine.Input.GetAxisRaw("Horizontal")),
-                GetDigital(UnityEngine.Input.GetAxisRaw("Vertical"))
+                Input.GetAxisRaw("Horizontal"),
+                Input.GetAxisRaw("Vertical")
             );
-            var jumpButton = UnityEngine.Input.GetButton("Jump");
-            var dashButton = UnityEngine.Input.GetButton("Dash");
-            var mainAttackButton = UnityEngine.Input.GetButton("MainAttack");
-            var sideAttackButton = UnityEngine.Input.GetButton("SideAttack");
-            var gigaAttackButton = UnityEngine.Input.GetButton("GigaAttack");
-            var pauseButton = UnityEngine.Input.GetButton("Pause");
-            var optionsButton = UnityEngine.Input.GetButton("Option");
+            var jumpButton = Input.GetButton("Jump");
+            var dashButton = Input.GetButton("Dash");
+            var mainAttackButton = Input.GetButton("MainAttack");
+            var sideAttackButton = Input.GetButton("SideAttack");
+            var gigaAttackButton = Input.GetButton("GigaAttack");
+            var idleSwitchButton = Input.GetButton("SwitchIdle");
             var switchButton = GetSwitchPlayerAxisDown();
+
 
             UpdateInputs(
                 moveAxis,
@@ -125,22 +120,19 @@ namespace MMX.InputSystem
                 sideAttackButton,
                 gigaAttackButton,
                 switchButton,
-                pauseButton,
-                optionsButton
+                idleSwitchButton
             );
         }
 
         private bool wasSwitchPlayerDown;
         private bool GetSwitchPlayerAxisDown()
         {
-            var isSwitchPlayer = UnityEngine.Input.GetAxisRaw("SwitchPlayer") > 0f;
+            var isSwitchPlayer = Input.GetAxisRaw("SwitchPlayer") > 0f;
             var isSwitchPlayerDown = !wasSwitchPlayerDown && isSwitchPlayer;
             wasSwitchPlayerDown = isSwitchPlayer;
 
             return isSwitchPlayerDown;
         }
-
-        private static float GetDigital(float value) => Mathf.Abs(value) > 0f ? Mathf.Sign(value) : 0f;
         #endregion
     }
 }
