@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 8985d3d0c6228cd45a2f0866cd35c137
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - voice: {instanceID: 0}
+  - sounds: {fileID: 11400000, guid: c25b291a1c01a044e972b871d0516b9d, type: 2}
+  - rayEnter: {instanceID: 0}
+  - rayOut: {instanceID: 0}
+  - victory: {instanceID: 0}
+  - jump: {instanceID: 0}
+  - land: {instanceID: 0}
+  - dashStart: {instanceID: 0}
+  - dashMiddle: {instanceID: 0}
+  - dashEnd: {instanceID: 0}
+  - wallGrab: {instanceID: 0}
+  - footstep: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
