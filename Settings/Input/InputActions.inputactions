@@ -19,7 +19,7 @@
                     "name": "MainAttack",
                     "type": "Button",
                     "id": "6c2ab1b8-8984-453a-af3d-a3c78ae1679a",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -64,6 +64,15 @@
                     "name": "Switch",
                     "type": "Button",
                     "id": "ca74501c-739e-4ec6-838b-f395be1eea20",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchIdle",
+                    "type": "Button",
+                    "id": "2e7b1f1e-437d-4be5-a294-5900c64f14e8",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -394,6 +403,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Options",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "737827c8-3908-4a1e-b39c-a139d3b1d7c3",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SwitchIdle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea18ee27-235b-453d-902c-44e80efd503e",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SwitchIdle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

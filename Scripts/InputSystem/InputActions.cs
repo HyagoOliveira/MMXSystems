@@ -107,7 +107,7 @@ namespace MMX.InputSystem
                     ""name"": ""MainAttack"",
                     ""type"": ""Button"",
                     ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -152,6 +152,15 @@ namespace MMX.InputSystem
                     ""name"": ""Switch"",
                     ""type"": ""Button"",
                     ""id"": ""ca74501c-739e-4ec6-838b-f395be1eea20"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchIdle"",
+                    ""type"": ""Button"",
+                    ""id"": ""2e7b1f1e-437d-4be5-a294-5900c64f14e8"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -482,6 +491,28 @@ namespace MMX.InputSystem
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Options"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""737827c8-3908-4a1e-b39c-a139d3b1d7c3"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SwitchIdle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea18ee27-235b-453d-902c-44e80efd503e"",
+                    ""path"": ""<Keyboard>/backquote"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SwitchIdle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1266,6 +1297,7 @@ namespace MMX.InputSystem
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
             m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
+            m_Player_SwitchIdle = m_Player.FindAction("SwitchIdle", throwIfNotFound: true);
             m_Player_Start = m_Player.FindAction("Start", throwIfNotFound: true);
             m_Player_Options = m_Player.FindAction("Options", throwIfNotFound: true);
             // UI
@@ -1372,6 +1404,7 @@ namespace MMX.InputSystem
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Dash;
         private readonly InputAction m_Player_Switch;
+        private readonly InputAction m_Player_SwitchIdle;
         private readonly InputAction m_Player_Start;
         private readonly InputAction m_Player_Options;
         /// <summary>
@@ -1413,6 +1446,10 @@ namespace MMX.InputSystem
             /// Provides access to the underlying input action "Player/Switch".
             /// </summary>
             public InputAction @Switch => m_Wrapper.m_Player_Switch;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/SwitchIdle".
+            /// </summary>
+            public InputAction @SwitchIdle => m_Wrapper.m_Player_SwitchIdle;
             /// <summary>
             /// Provides access to the underlying input action "Player/Start".
             /// </summary>
@@ -1468,6 +1505,9 @@ namespace MMX.InputSystem
                 @Switch.started += instance.OnSwitch;
                 @Switch.performed += instance.OnSwitch;
                 @Switch.canceled += instance.OnSwitch;
+                @SwitchIdle.started += instance.OnSwitchIdle;
+                @SwitchIdle.performed += instance.OnSwitchIdle;
+                @SwitchIdle.canceled += instance.OnSwitchIdle;
                 @Start.started += instance.OnStart;
                 @Start.performed += instance.OnStart;
                 @Start.canceled += instance.OnStart;
@@ -1506,6 +1546,9 @@ namespace MMX.InputSystem
                 @Switch.started -= instance.OnSwitch;
                 @Switch.performed -= instance.OnSwitch;
                 @Switch.canceled -= instance.OnSwitch;
+                @SwitchIdle.started -= instance.OnSwitchIdle;
+                @SwitchIdle.performed -= instance.OnSwitchIdle;
+                @SwitchIdle.canceled -= instance.OnSwitchIdle;
                 @Start.started -= instance.OnStart;
                 @Start.performed -= instance.OnStart;
                 @Start.canceled -= instance.OnStart;
@@ -1905,6 +1948,13 @@ namespace MMX.InputSystem
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnSwitch(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "SwitchIdle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnSwitchIdle(InputAction.CallbackContext context);
             /// <summary>
             /// Method invoked when associated input action "Start" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
