@@ -23,7 +23,7 @@ namespace MMX.PlayerSystem
     [RequireComponent(typeof(BoxCollider2DAdapter))]
     public sealed class Player : MonoBehaviour
     {
-        [field: SerializeField] public PlayerName Name { get; private set; }
+        [field: SerializeField] public PlayerName Name { get; private set; } = PlayerName.None;
         [field: SerializeField] public Motor Motor { get; private set; }
         [field: SerializeField] public BoxBody Body { get; private set; }
         [field: SerializeField] public AnimationEvents Events { get; private set; }
@@ -49,6 +49,9 @@ namespace MMX.PlayerSystem
             Events = GetComponent<AnimationEvents>();
             StateMachine = GetComponent<AnimatorStateMachine>();
             ColliderAdapter = GetComponent<BoxCollider2DAdapter>();
+
+            Energy = GetComponent<Energy>();
+            Damageable = GetComponent<Damageable>();
         }
 
         private void Awake()
