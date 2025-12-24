@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61c2faad3546b6458cf93e7dbd40b59, type: 3}
+  m_Name: MegaManX4_JP
+  m_EditorClassIdentifier: 
+  wallJump: {fileID: 0}
+  airJump: {fileID: 0}
+  groundJumps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  crouchedSaberAttack: {fileID: 0}
+  groundedSaberAttacks: []
+  death: {fileID: 0}
+  lowEnergy: {fileID: 0}
+  normalHurt: {fileID: 0}
+  largerHurt: {fileID: 0}
+  largerHurtDamage: 2

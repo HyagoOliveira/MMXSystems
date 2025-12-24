@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8985d3d0c6228cd45a2f0866cd35c137, type: 3}
+  m_Name: MegaManX
+  m_EditorClassIdentifier: 
+  voice: {fileID: 11400000, guid: 210375a76e1bc1d4ea286e546805f1c0, type: 2}
+  common: {fileID: 11400000, guid: c25b291a1c01a044e972b871d0516b9d, type: 2}
+  rayEnter: {fileID: 8300000, guid: 29b192abf4640c743a1cae60ef9b1e2c, type: 3}
+  rayOut: {fileID: 8300000, guid: 2004cf76ed5e189469682bde81037ec6, type: 3}
+  victory: {fileID: 8300000, guid: 872ae583e984f1d41beebc2c3f308a21, type: 3}
+  jump: {fileID: 8300000, guid: b1aadb22e384b4f46946ffa091b26cea, type: 3}
+  land: {fileID: 8300000, guid: e209c52f25dae164087becebffdeb763, type: 3}
+  wallGrab: {fileID: 8300000, guid: acf4cd9db3f912648808864f716a7eb8, type: 3}
