@@ -8,6 +8,7 @@
         None = -1,
         MegaManX,
         Zero,
-        Axl
+        Axl,
+        Alia
     }
 }

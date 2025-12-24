@@ -21,5 +21,9 @@ namespace MMX.CoreSystem
         #region Axl
         Axl_Normal = 40,
         #endregion  
+
+        #region Alia
+        Alia_Normal = 60,
+        #endregion 
     }
 }
