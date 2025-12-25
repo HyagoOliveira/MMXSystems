@@ -31,12 +31,12 @@ namespace MMX.PlayerSystem
             player.Stuck.OnEntered += HandleHurtEntered;*/
 
             //player.StartDash.OnEntered += HandleStartDashEntered;
-            player.Dash.OnEntered += HandleDashEntered;
-            player.Dash.OnExited += HandleDashExited;
+            //player.Dash.OnEntered += HandleDashEntered;
+            //player.Dash.OnExited += HandleDashExited;
             //player.EndDash.OnEntered += HandleEndDashEntered;
 
-            player.WallGrab.OnEntered += HandleWallGrabEntered;
-            player.WallJump.OnEntered += HandleWallJumpEntered;
+            //player.WallGrab.OnEntered += HandleWallGrabEntered;
+            //player.WallJump.OnEntered += HandleWallJumpEntered;
 
             player.Jump.OnEntered += HandleJumpEntered;
             player.Land.OnEntered += HandleLandEntered;
@@ -52,12 +52,12 @@ namespace MMX.PlayerSystem
             player.Stuck.OnEntered -= HandleHurtEntered;*/
 
             //player.StartDash.OnEntered -= HandleStartDashEntered;
-            player.Dash.OnEntered -= HandleDashEntered;
-            player.Dash.OnExited -= HandleDashExited;
+            //player.Dash.OnEntered -= HandleDashEntered;
+            //player.Dash.OnExited -= HandleDashExited;
             //player.EndDash.OnEntered -= HandleEndDashEntered;
 
-            player.WallGrab.OnEntered -= HandleWallGrabEntered;
-            player.WallJump.OnEntered -= HandleWallJumpEntered;
+            //player.WallGrab.OnEntered -= HandleWallGrabEntered;
+            //player.WallJump.OnEntered -= HandleWallJumpEntered;
 
             player.Jump.OnEntered -= HandleJumpEntered;
             player.Land.OnEntered -= HandleLandEntered;
