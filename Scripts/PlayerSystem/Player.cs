@@ -36,6 +36,9 @@ namespace MMX.PlayerSystem
         [field: SerializeField] public Energy Energy { get; private set; }
         [field: SerializeField] public Damageable Damageable { get; private set; }
 
+        [field: Header("Data")]
+        [field: SerializeField] public PlayerSoundsData Sounds { get; private set; }
+
         // Player should not references PlayerHandlers (PlayerAnimationHandler, PlayerInputHandler, etc)
         // PlayerHandlers should access the Player component and handler everything necessary from there.
 
