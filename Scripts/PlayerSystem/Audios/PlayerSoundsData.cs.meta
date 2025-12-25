@@ -5,17 +5,13 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - voice: {instanceID: 0}
-  - sounds: {fileID: 11400000, guid: c25b291a1c01a044e972b871d0516b9d, type: 2}
+  - common: {fileID: 11400000, guid: 3b456444f704b2d429fa9df2e07367e4, type: 2}
   - rayEnter: {instanceID: 0}
   - rayOut: {instanceID: 0}
   - victory: {instanceID: 0}
   - jump: {instanceID: 0}
   - land: {instanceID: 0}
-  - dashStart: {instanceID: 0}
-  - dashMiddle: {instanceID: 0}
-  - dashEnd: {instanceID: 0}
   - wallGrab: {instanceID: 0}
-  - footstep: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

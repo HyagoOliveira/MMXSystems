@@ -27,8 +27,8 @@ namespace MMX.PlayerSystem
         [field: SerializeField] public PlayerName Name { get; private set; } = PlayerName.None;
         [field: SerializeField] public Motor Motor { get; private set; }
         [field: SerializeField] public BoxBody Body { get; private set; }
-        [field: SerializeField] public AnimationEvents Events { get; private set; }
         [field: SerializeField] public PlayerAnimator Animator { get; private set; }
+        [field: SerializeField] public AnimationEvents AnimationEvents { get; private set; }
         [field: SerializeField] public AnimatorStateMachine StateMachine { get; private set; }
         [field: SerializeField] public BoxCollider2DAdapter ColliderAdapter { get; private set; }
 
@@ -73,8 +73,8 @@ namespace MMX.PlayerSystem
         {
             Motor = GetComponent<Motor>();
             Body = GetComponent<BoxBody>();
-            Events = GetComponent<AnimationEvents>();
             Animator = GetComponent<PlayerAnimator>();
+            AnimationEvents = GetComponent<AnimationEvents>();
             StateMachine = GetComponent<AnimatorStateMachine>();
             ColliderAdapter = GetComponent<BoxCollider2DAdapter>();
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MMX.PlayerSystem
 {
-    [CreateAssetMenu(fileName = "PlayerVoicesData", menuName = "MMX/Players/Sounds")]
+    [CreateAssetMenu(fileName = "PlayerVoicesData", menuName = "MMX/Players/Voices")]
     public sealed class PlayerVoicesData : ScriptableObject
     {
         [Header("Jumps")]

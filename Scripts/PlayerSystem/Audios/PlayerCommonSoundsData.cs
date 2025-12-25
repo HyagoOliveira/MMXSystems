@@ -12,7 +12,6 @@ namespace MMX.PlayerSystem
 
         [Header("Others")]
         public AudioClip death;
-        public AudioClip footstep;
         public AudioClip freeze;
         public AudioClip victory;
         public AudioClip wallSlide;

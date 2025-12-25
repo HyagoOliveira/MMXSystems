@@ -40,6 +40,9 @@ namespace MMX.PlayerSystem
 
             player.Jump.OnEntered += HandleJumpEntered;
             player.Land.OnEntered += HandleLandEntered;
+
+            player.AnimationEvents.OnVictory += HandleGetReadied;
+            player.AnimationEvents.OnGetReadied += HandleGetReadied;
         }
 
         private void OnDisable()
@@ -61,16 +64,16 @@ namespace MMX.PlayerSystem
 
             player.Jump.OnEntered -= HandleJumpEntered;
             player.Land.OnEntered -= HandleLandEntered;
+
+            player.AnimationEvents.OnVictory -= HandleGetReadied;
+            player.AnimationEvents.OnGetReadied -= HandleGetReadied;
         }
 
         private void HandleDeathEntered() => PlayDeath();
         private void HandleGetOutEntered() => PlayRayOut();
         private void HandleHurtEntered() => PlayRandomHurtShout();
         private void HandleRayInEntered() => PlayRayEnter();
-
-        #region Animation Event Functions
-        public void PlayVictory() => headSource.PlayOneShot(Sounds.victory);
-        #endregion
+        private void HandleGetReadied() => headSource.PlayOneShot(Sounds.common.victory);
 
         public void PlayRayEnter() => bodySource.PlayOneShot(Sounds.rayEnter);
         public void PlayRayOut() => bodySource.PlayOneShot(Sounds.rayOut);

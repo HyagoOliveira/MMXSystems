@@ -11,7 +11,6 @@ namespace MMX.PlayerSystem
         [Header("Spawn")]
         public AudioClip rayEnter;
         public AudioClip rayOut;
-        public AudioClip victory;
 
         [Header("Jumps")]
         public AudioClip jump;

@@ -12,8 +12,12 @@ namespace MMX.CharacterSystem
     [DisallowMultipleComponent]
     public sealed class AnimationEvents : MonoBehaviour
     {
+        public event Action OnVictory;
+        public event Action OnGetReadied;
         public event Action OnFootstep;
 
+        private void Victory() => OnVictory?.Invoke();
+        private void GetReady() => OnGetReadied?.Invoke();
         private void Footstep() => OnFootstep?.Invoke();
     }
 }
