@@ -51,9 +51,9 @@ namespace MMX.PlayerSystem
         public IdleState Idle => StateMachine.GetState<IdleState>();
         public JumpState Jump => StateMachine.GetState<JumpState>();
         public FallState Fall => StateMachine.GetState<FallState>();
-        //public StartDashState StartDash => StateMachine.GetState<StartDashState>();
+        public StartDashState StartDash => StateMachine.GetState<StartDashState>();
         public DashState Dash => StateMachine.GetState<DashState>();
-        /*public EndDashState EndDash => StateMachine.GetState<EndDashState>();*/
+        public EndDashState EndDash => StateMachine.GetState<EndDashState>();
         public LandState Land => StateMachine.GetState<LandState>();
         public CrouchState Crouch => StateMachine.GetState<CrouchState>();
         public WallGrabState WallGrab => StateMachine.GetState<WallGrabState>();
@@ -114,7 +114,7 @@ namespace MMX.PlayerSystem
             //WallJump.SetInput(hasInput);
         }
 
-        public void SetDashInput(bool hasInput) { }// => Dash.Input.Set(hasInput);
+        public void SetDashInput(bool hasInput) => Dash.Input.Set(hasInput);
         public void SetMainAttackInput(bool hasInput) => CurrentArmor.SetMainWeaponInput(hasInput);
         public void SetSideAttackInput(bool hasInput) => CurrentArmor.SetSideWeaponInput(hasInput);
         public void SetGigaAttackInput(bool hasInput) => CurrentArmor.SetGigaWeaponInput(hasInput);

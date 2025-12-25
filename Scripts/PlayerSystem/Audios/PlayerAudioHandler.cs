@@ -30,10 +30,10 @@ namespace MMX.PlayerSystem
             player.RayIn.OnEntered += HandleRayInEntered;
             player.Stuck.OnEntered += HandleHurtEntered;*/
 
-            //player.StartDash.OnEntered += HandleStartDashEntered;
-            //player.Dash.OnEntered += HandleDashEntered;
-            //player.Dash.OnExited += HandleDashExited;
-            //player.EndDash.OnEntered += HandleEndDashEntered;
+            player.StartDash.OnEntered += HandleStartDashEntered;
+            player.Dash.OnEntered += HandleDashEntered;
+            player.Dash.OnExited += HandleDashExited;
+            player.EndDash.OnEntered += HandleEndDashEntered;
 
             //player.WallGrab.OnEntered += HandleWallGrabEntered;
             //player.WallJump.OnEntered += HandleWallJumpEntered;
@@ -54,10 +54,10 @@ namespace MMX.PlayerSystem
             player.RayIn.OnEntered -= HandleRayInEntered;
             player.Stuck.OnEntered -= HandleHurtEntered;*/
 
-            //player.StartDash.OnEntered -= HandleStartDashEntered;
-            //player.Dash.OnEntered -= HandleDashEntered;
-            //player.Dash.OnExited -= HandleDashExited;
-            //player.EndDash.OnEntered -= HandleEndDashEntered;
+            player.StartDash.OnEntered -= HandleStartDashEntered;
+            player.Dash.OnEntered -= HandleDashEntered;
+            player.Dash.OnExited -= HandleDashExited;
+            player.EndDash.OnEntered -= HandleEndDashEntered;
 
             //player.WallGrab.OnEntered -= HandleWallGrabEntered;
             //player.WallJump.OnEntered -= HandleWallJumpEntered;
