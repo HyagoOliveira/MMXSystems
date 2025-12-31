@@ -85,6 +85,9 @@ namespace MMX.InputSystem
             bool toggleIdleButton
         )
         {
+            var hasHorizontalInput = Mathf.Abs(moveAxis.x) > 0f;
+            if (hasHorizontalInput) moveAxis.x = Mathf.Sign(moveAxis.x);
+
             OnMoved?.Invoke(moveAxis);
             OnJumped?.Invoke(jumpButton);
             OnDashed?.Invoke(dashButton);
