@@ -1,7 +1,8 @@
-using MMX.CoreSystem;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using System.Linq;
+using MMX.CoreSystem;
+using MMX.CharacterSystem;
+using System.Collections.Generic;
 
 namespace MMX.PlayerSystem
 {
@@ -19,6 +20,13 @@ namespace MMX.PlayerSystem
         {
             FindPlayers();
             FindFirst();
+            MoveCurrentToSpawnPlace();
+        }
+
+        public void MoveCurrentToSpawnPlace()
+        {
+            var spawnPlace = Place.Find("SpawnPlace");
+            Current.MoveTo(spawnPlace);
         }
 
         private async void FindPlayers()

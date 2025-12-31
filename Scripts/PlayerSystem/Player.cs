@@ -98,6 +98,8 @@ namespace MMX.PlayerSystem
         public void EnableInteractions() { }
         public void DisableInteractions() { }
 
+        public void MoveTo(Transform place) => transform.SetPositionAndRotation(place.position, place.rotation);
+
         #region Inputs
         public void SetMoveInput(Vector2 input)
         {
