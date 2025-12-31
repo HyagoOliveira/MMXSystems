@@ -6,7 +6,7 @@ using UnityEngine.AddressableAssets;
 #endif
 using ActionCode.SerializedDictionaries;
 
-namespace MMXD.LoadingSystem
+namespace MMX.LoadingSystem
 {
     /// <summary>
     /// Generic class to load Prefabs asynchronously.

@@ -1,6 +1,6 @@
 using UnityEngine;
 using MMX.CoreSystem;
-using MMXD.LoadingSystem;
+using MMX.LoadingSystem;
 
 namespace MMX.PlayerSystem
 {
