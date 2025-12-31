@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 #if ADDRESSABLES
 using UnityEngine.AddressableAssets;
 #endif
@@ -14,10 +15,13 @@ namespace MMXD.LoadingSystem
     public abstract class AsyncPack<T> : ScriptableObject where T : Enum
     {
 #if ADDRESSABLES
-        [SerializeField] private SerializedDictionary<T, AssetReferenceGameObject> prefabs;
+        [SerializeField] SerializedDictionary<T, AssetReferenceGameObject> prefabs;
 #else
         [SerializeField] private SerializedDictionary<T, GameObject> prefabs;
 #endif
+
+        public int Count => prefabs.Count;
+        public ICollection<T> GetTypes() => prefabs.Keys;
 
         /// <summary>
         /// Asynchronously instantiates a GameObject using the given Prefab type. 
