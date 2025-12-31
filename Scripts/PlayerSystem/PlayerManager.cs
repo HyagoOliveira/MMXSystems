@@ -31,8 +31,12 @@ namespace MMX.PlayerSystem
 
         private async void FindPlayers()
         {
-            var instances = FindObjectsByType<Player>(FindObjectsSortMode.InstanceID);
+            var instances = FindObjectsByType<Player>(
+                FindObjectsInactive.Include,
+                FindObjectsSortMode.InstanceID
+            );
             players = instances.ToDictionary(p => p.Name, p => p);
+
             var hasAllPlayers = players.Count == pack.Count;
             if (hasAllPlayers) return;
 
