@@ -31,18 +31,18 @@ namespace MMX.PlayerSystem
 
         private async void FindPlayers()
         {
-            var instances = FindObjectsByType<Player>(
+            var scenePlayers = FindObjectsByType<Player>(
                 FindObjectsInactive.Include,
                 FindObjectsSortMode.InstanceID
             );
-            players = instances.ToDictionary(p => p.Name, p => p);
+            players = scenePlayers.ToDictionary(p => p.Name, p => p);
 
             var hasAllPlayers = players.Count == pack.Count;
             if (hasAllPlayers) return;
 
             var parent = GetPlayerParent();
 
-            foreach (var playerName in pack.GetTypes())
+            foreach (var playerName in pack.AvailablePlayers)
             {
                 var hasPlayer = players.ContainsKey(playerName);
                 if (hasPlayer) continue;

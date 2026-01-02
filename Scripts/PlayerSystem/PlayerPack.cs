@@ -7,6 +7,13 @@ namespace MMX.PlayerSystem
     [CreateAssetMenu(fileName = "PlayerPack", menuName = "MMX/Players/Player Pack", order = 110)]
     public sealed class PlayerPack : AsyncPack<PlayerName>
     {
+        [SerializeField] private PlayerName[] availablePlayers;
+
+        public PlayerName[] AvailablePlayers => availablePlayers;
+
+        public void AddPlayers(params PlayerName[] players) => availablePlayers = players;
+        public void ClearPlayers() => availablePlayers = System.Array.Empty<PlayerName>();
+
         public async Awaitable<Player[]> InstantiateAllAsync(Transform parent = null)
         {
             var i = 0;
