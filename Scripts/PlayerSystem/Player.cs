@@ -1,11 +1,11 @@
-using UnityEngine;
-using MMX.CoreSystem;
-using MMX.CharacterSystem;
-using ActionCode.Physics;
-using ActionCode.Sidescroller;
-using ActionCode.EnergySystem;
 using ActionCode.AnimatorStates;
 using ActionCode.ColliderAdapter;
+using ActionCode.EnergySystem;
+using ActionCode.Physics;
+using ActionCode.Sidescroller;
+using MMX.CharacterSystem;
+using MMX.CoreSystem;
+using UnityEngine;
 
 namespace MMX.PlayerSystem
 {
@@ -98,7 +98,15 @@ namespace MMX.PlayerSystem
         public void EnableInteractions() { }
         public void DisableInteractions() { }
 
-        public void MoveTo(Transform place) => transform.SetPositionAndRotation(place.position, place.rotation);
+        public void Spawn(Transform place)
+        {
+            Place(place);
+            Enable();
+            //IsDead = false;
+            //RayIn.Spawn();
+        }
+
+        public void Place(Transform place) => transform.SetPositionAndRotation(place.position, place.rotation);
 
         #region Inputs
         public void SetMoveInput(Vector2 input)

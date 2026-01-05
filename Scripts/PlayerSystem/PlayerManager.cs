@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Linq;
 using MMX.CoreSystem;
@@ -12,22 +13,36 @@ namespace MMX.PlayerSystem
         public PlayerName first;
         [SerializeField] private PlayerPack pack;
 
-        public Player Current { get; private set; }
+        public Player Current => players[currentName];
+        public Transform LastSpawnPlace { get; private set; }
+        public static PlayerManager Instance { get; private set; }
+
+        public static event Action<PlayerName> OnPlayerSpawned;
 
         private Dictionary<PlayerName, Player> players;
+        private PlayerName currentName = PlayerName.None;
 
         private void Awake()
         {
+            Instance = this;
+
             FindPlayers();
             FindFirst();
-            MoveCurrentToSpawnPlace();
+            UpdateSpawnPlace();
+            Current.Place(LastSpawnPlace);
         }
 
-        public void MoveCurrentToSpawnPlace()
+        private void OnDestroy() => Instance = null;
+
+        public void Spawn(PlayerName player)
         {
-            var spawnPlace = Place.Find("SpawnPlace");
-            Current.MoveTo(spawnPlace);
+            currentName = player;
+
+            Current.Spawn(LastSpawnPlace);
+            OnPlayerSpawned?.Invoke(currentName);
         }
+
+        public void UpdateSpawnPlace() => LastSpawnPlace = Place.Find("SpawnPlace");
 
         private async void FindPlayers()
         {
@@ -58,7 +73,7 @@ namespace MMX.PlayerSystem
         private void FindFirst()
         {
             var hasFirstPlayer = players.TryGetValue(first, out var currentPlayer);
-            if (hasFirstPlayer) Current = currentPlayer;
+            if (hasFirstPlayer) currentName = currentPlayer.Name;
         }
 
         private static Transform GetPlayerParent()
