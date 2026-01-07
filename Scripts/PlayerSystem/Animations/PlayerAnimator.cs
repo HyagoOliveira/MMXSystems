@@ -17,6 +17,12 @@ namespace MMX.PlayerSystem
             internal set => Animator.SetFloat(idleIndex, value);
         }
 
+        public bool IsRay
+        {
+            get => Animator.GetBool(isRay);
+            internal set => Animator.SetBool(isRay, value);
+        }
+
         public bool IsGrounded
         {
             get => Animator.GetBool(isGrounded);
@@ -69,6 +75,7 @@ namespace MMX.PlayerSystem
         #region Hashes
         private static readonly int idleIndex = Animator.StringToHash("IdleIndex");
 
+        private static readonly int isRay = Animator.StringToHash("IsRay");
         private static readonly int isGrounded = Animator.StringToHash("IsGrounded");
         private static readonly int isAirborne = Animator.StringToHash("IsAirborne");
         private static readonly int isFalling = Animator.StringToHash("IsFalling");
@@ -79,6 +86,7 @@ namespace MMX.PlayerSystem
         private static readonly int hasHorizontalInput = Animator.StringToHash("HasHorizontalInput");
 
         private static readonly int win = Animator.StringToHash("Win");
+        private static readonly int spawn = Animator.StringToHash("Spawn");
         private static readonly int @switch = Animator.StringToHash("Switch");
 
         private static readonly string weaponLayerName = "Weapon";
@@ -124,6 +132,7 @@ namespace MMX.PlayerSystem
 
         #region Triggers
         public void Win() => Animator.SetTrigger(win);
+        public void Spawn() => Animator.SetTrigger(spawn);
         public void Switch() => Animator.SetTrigger(@switch);
         #endregion
 
