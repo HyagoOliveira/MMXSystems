@@ -23,12 +23,12 @@ namespace MMX.PlayerSystem
 
         private void OnEnable()
         {
-            /*player.Death.OnEntered += HandleDeathEntered;
+            //player.Death.OnEntered += HandleDeathEntered;
             player.GetOut.OnEntered += HandleGetOutEntered;
-            player.BigHurt.OnEntered += HandleHurtEntered;
-            player.NormalHurt.OnEntered += HandleHurtEntered;
+            //player.BigHurt.OnEntered += HandleHurtEntered;
+            //player.NormalHurt.OnEntered += HandleHurtEntered;
             player.RayIn.OnEntered += HandleRayInEntered;
-            player.Stuck.OnEntered += HandleHurtEntered;*/
+            //player.Stuck.OnEntered += HandleHurtEntered;
 
             player.StartDash.OnEntered += HandleStartDashEntered;
             player.Dash.OnEntered += HandleDashEntered;
@@ -47,12 +47,12 @@ namespace MMX.PlayerSystem
 
         private void OnDisable()
         {
-            /*player.Death.OnEntered -= HandleDeathEntered;
+            //player.Death.OnEntered -= HandleDeathEntered;
             player.GetOut.OnEntered -= HandleGetOutEntered;
-            player.BigHurt.OnEntered -= HandleHurtEntered;
-            player.NormalHurt.OnEntered -= HandleHurtEntered;
+            //player.BigHurt.OnEntered -= HandleHurtEntered;
+            //player.NormalHurt.OnEntered -= HandleHurtEntered;
             player.RayIn.OnEntered -= HandleRayInEntered;
-            player.Stuck.OnEntered -= HandleHurtEntered;*/
+            //player.Stuck.OnEntered -= HandleHurtEntered;
 
             player.StartDash.OnEntered -= HandleStartDashEntered;
             player.Dash.OnEntered -= HandleDashEntered;
