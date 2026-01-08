@@ -38,6 +38,7 @@ namespace MMX.PlayerSystem
             FindFirst();
             SortPlayers();
             UpdateSpawnPlace();
+
             Current.Place(LastSpawnPlace);
         }
 
@@ -98,14 +99,17 @@ namespace MMX.PlayerSystem
 
         private async Awaitable SwitchAsync(PlayerName player)
         {
-            var lastPlace = Current.transform;
+            var lastPosition = Current.transform.position;
+            var lastRotation = Current.transform.rotation;
+
             UnSpawn_Internal();
 
             await Awaitable.NextFrameAsync(); // Waits to enter in UnSpawn State.
-            //yield return Current.GetOut.WaitWhileIsExecuting();
+            await Awaitable.WaitForSecondsAsync(1f);
+            //await Current.GetOut.WaitWhileIsExecutingAsync();
 
             currentName = player;
-            Current.SwitchBy(lastPlace);
+            Current.SwitchBy(lastPosition, lastRotation);
 
             OnPlayerSwitched?.Invoke(Current.Name);
         }
@@ -161,6 +165,7 @@ namespace MMX.PlayerSystem
             foreach (var player in players.Values)
             {
                 player.Order = index++;
+                player.Energy.CompleteToIntial(); //TODO improve EnergySystem
             }
         }
 
