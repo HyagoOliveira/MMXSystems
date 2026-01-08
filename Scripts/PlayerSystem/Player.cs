@@ -45,9 +45,14 @@ namespace MMX.PlayerSystem
         public AbstractArmor CurrentArmor { get; private set; }
         public BoxCollider2D Collider => ColliderAdapter.Collider;
 
+        public int Order { get; internal set; }
+        public bool Enabled => gameObject.activeInHierarchy;
+        public bool IsUsingAnyArmor { get; private set; }
+        public bool IsUsingAnyRideArmor { get; private set; }
+
         #region States
-        /*public RayInState RayIn => StateMachine.GetState<RayInState>();
-        public GetOutState GetOut => StateMachine.GetState<GetOutState>();*/
+        public RayInState RayIn => StateMachine.GetState<RayInState>();
+        //public GetOutState GetOut => StateMachine.GetState<GetOutState>();
         public IdleState Idle => StateMachine.GetState<IdleState>();
         public JumpState Jump => StateMachine.GetState<JumpState>();
         public FallState Fall => StateMachine.GetState<FallState>();
@@ -88,8 +93,14 @@ namespace MMX.PlayerSystem
             armorLoader = GetComponentInChildren<AbstractArmorLoader>();
         }
 
-        //TODO load armor from GameData
+        public bool IsAlive() => !IsDead();
+        public bool IsDead() => Energy.IsEmpty();
+        public bool IsAbleToSwitchIn() => !Enabled && IsAlive();
+        public bool IsAbleToSwitchOut() => Body.IsGrounded && IsValidState() && Damageable.IsAbleToReceiveDamage();
+        public bool IsValidState() => Enabled && IsAlive() && !IsUsingAnyRideArmor && !IsStucked() && !Motor.IsClimbing();
+        public bool IsStucked() => false;// Stuck.IsExecuting;
 
+        //TODO load armor from GameData
         public async void LoadArmor(ArmorName armor) => CurrentArmor = await armorLoader.LoadAsync(armor);
 
         public void Enable() => gameObject.SetActive(true);
@@ -102,11 +113,20 @@ namespace MMX.PlayerSystem
         {
             Place(place);
             Enable();
-            //IsDead = false;
-            //RayIn.Spawn();
+            RayIn.Spawn();
         }
 
+        public void UnSpawn() { }// => GetOut.GetOut();
+
         public void Place(Transform place) => transform.SetPositionAndRotation(place.position, place.rotation);
+
+        public void ToggleIdle() => Idle.Toggle();
+
+        internal void SwitchBy(Transform lastPlace)
+        {
+            Place(lastPlace);
+            Enable();
+        }
 
         #region Inputs
         public void SetMoveInput(Vector2 input)
@@ -128,8 +148,6 @@ namespace MMX.PlayerSystem
         public void SetMainAttackInput(bool hasInput) => CurrentArmor.SetMainWeaponInput(hasInput);
         public void SetSideAttackInput(bool hasInput) => CurrentArmor.SetSideWeaponInput(hasInput);
         public void SetGigaAttackInput(bool hasInput) => CurrentArmor.SetGigaWeaponInput(hasInput);
-        public void SwitchInput() { }
-        public void ToggleIdle() => Idle.Toggle();
         #endregion
     }
 }

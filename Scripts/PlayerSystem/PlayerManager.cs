@@ -1,9 +1,9 @@
-using System;
-using UnityEngine;
-using System.Linq;
-using MMX.CoreSystem;
 using MMX.CharacterSystem;
+using MMX.CoreSystem;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace MMX.PlayerSystem
 {
@@ -13,11 +13,19 @@ namespace MMX.PlayerSystem
         public PlayerName first;
         [SerializeField] private PlayerPack pack;
 
+        [Header("Switching")]
+        [SerializeField, Min(0f), Tooltip("The time (in seconds) to wait until switch Players again.")]
+        private float switchTime = 2F;
+
         public Player Current => players[currentName];
+        public bool IsSwitching { get; private set; }
         public Transform LastSpawnPlace { get; private set; }
-        public static PlayerManager Instance { get; private set; }
 
         public static event Action<PlayerName> OnPlayerSpawned;
+        public static event Action<PlayerName> OnPlayerSwitched;
+        public static event Action<PlayerName> OnPlayerUnSpawned;
+
+        private static PlayerManager Instance { get; set; }
 
         private Dictionary<PlayerName, Player> players;
         private PlayerName currentName = PlayerName.None;
@@ -28,13 +36,34 @@ namespace MMX.PlayerSystem
 
             FindPlayers();
             FindFirst();
+            SortPlayers();
             UpdateSpawnPlace();
             Current.Place(LastSpawnPlace);
         }
 
         private void OnDestroy() => Instance = null;
 
-        public void Spawn(PlayerName player)
+        public static void Spawn(PlayerName player)
+        {
+            if (Instance) Instance.Spawn_Internal(player);
+        }
+
+        public static void UnSpawn()
+        {
+            if (Instance) Instance.UnSpawn_Internal();
+        }
+
+        public static void Switch(PlayerName player)
+        {
+            if (Instance) Instance.Switch_Internal(player);
+        }
+
+        public static void SwitchToNext()
+        {
+            if (Instance) Instance.SwitchToNext_Internal();
+        }
+
+        private void Spawn_Internal(PlayerName player)
         {
             currentName = player;
 
@@ -42,7 +71,57 @@ namespace MMX.PlayerSystem
             OnPlayerSpawned?.Invoke(currentName);
         }
 
-        public void UpdateSpawnPlace() => LastSpawnPlace = Place.Find("SpawnPlace");
+        private void UnSpawn_Internal()
+        {
+            Current.UnSpawn();
+            OnPlayerUnSpawned?.Invoke(Current.Name);
+        }
+
+        private void SwitchToNext_Internal() => Switch_Internal(GetNextPlayerName());
+
+        private async void Switch_Internal(PlayerName player)
+        {
+            var isAbleToSwitch =
+                !IsSwitching &&
+                Current.IsAbleToSwitchOut() &&
+                IsAbleToSwitchFor(player);
+
+            if (!isAbleToSwitch) return;
+
+            IsSwitching = true;
+
+            await SwitchAsync(player);
+            await Awaitable.WaitForSecondsAsync(switchTime);
+
+            IsSwitching = false;
+        }
+
+        private async Awaitable SwitchAsync(PlayerName player)
+        {
+            var lastPlace = Current.transform;
+            UnSpawn_Internal();
+
+            await Awaitable.NextFrameAsync(); // Waits to enter in UnSpawn State.
+            //yield return Current.GetOut.WaitWhileIsExecuting();
+
+            currentName = player;
+            Current.SwitchBy(lastPlace);
+
+            OnPlayerSwitched?.Invoke(Current.Name);
+        }
+
+        private void UpdateSpawnPlace() => LastSpawnPlace = Place.Find("SpawnPlace");
+
+        public bool IsAbleToSwitchFor(PlayerName playerName) =>
+            players.TryGetValue(playerName, out Player player) &&
+            player.IsAbleToSwitchIn();
+
+        private PlayerName GetNextPlayerName()
+        {
+            var index = Current.Order;
+            if (++index >= players.Count) index = 0;
+            return players.Keys.ElementAt(index);
+        }
 
         private async void FindPlayers()
         {
@@ -74,6 +153,15 @@ namespace MMX.PlayerSystem
         {
             var hasFirstPlayer = players.TryGetValue(first, out var currentPlayer);
             if (hasFirstPlayer) currentName = currentPlayer.Name;
+        }
+
+        private void SortPlayers()
+        {
+            var index = 0;
+            foreach (var player in players.Values)
+            {
+                player.Order = index++;
+            }
         }
 
         private static Transform GetPlayerParent()
