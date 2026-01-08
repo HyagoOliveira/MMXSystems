@@ -32,15 +32,16 @@ namespace MMX.PlayerSystem
         [field: SerializeField] public AnimatorStateMachine StateMachine { get; private set; }
         [field: SerializeField] public BoxCollider2DAdapter ColliderAdapter { get; private set; }
 
+        [field: Header("Handlers")]
+        [field: SerializeField] public PlayerInputHandler InputHandler { get; private set; }
+        [field: SerializeField] public PlayerAnimationHandler AnimationHandler { get; private set; }
+
         [field: Header("Health")]
         [field: SerializeField] public Energy Energy { get; private set; }
         [field: SerializeField] public Damageable Damageable { get; private set; }
 
         [field: Header("Data")]
         [field: SerializeField] public PlayerSoundsData Sounds { get; private set; }
-
-        // Player should not references PlayerHandlers (PlayerAnimationHandler, PlayerInputHandler, etc)
-        // PlayerHandlers should access the Player component and handler everything necessary from there.
 
         public AbstractArmor CurrentArmor { get; private set; }
         public BoxCollider2D Collider => ColliderAdapter.Collider;
@@ -52,7 +53,7 @@ namespace MMX.PlayerSystem
 
         #region States
         public RayInState RayIn => StateMachine.GetState<RayInState>();
-        //public GetOutState GetOut => StateMachine.GetState<GetOutState>();
+        public GetOutState GetOut => StateMachine.GetState<GetOutState>();
         public IdleState Idle => StateMachine.GetState<IdleState>();
         public JumpState Jump => StateMachine.GetState<JumpState>();
         public FallState Fall => StateMachine.GetState<FallState>();
@@ -106,8 +107,39 @@ namespace MMX.PlayerSystem
         public void Enable() => gameObject.SetActive(true);
         public void Disable() => gameObject.SetActive(false);
 
-        public void EnableInteractions() { }
-        public void DisableInteractions() { }
+        internal void EnableInteractions()
+        {
+            Body.enabled = true;
+            Body.Vertical.UseGravity = true;
+
+            Energy.enabled = true;
+            //Weapons.enabled = true;
+            Damageable.enabled = true;
+            InputHandler.enabled = true;
+
+            Motor.enabled = true;
+            Motor.CanChangeInput = true;
+            Motor.CanChangeHorizontalDirection = true;
+        }
+
+        internal void DisableInteractions()
+        {
+            Body.StopSpeeds();
+            Body.enabled = false;
+            Body.Vertical.UseGravity = false;
+
+            //Trail.DisableImmediate();
+
+            Energy.enabled = false;
+            //Weapons.enabled = false;
+            Damageable.enabled = false;
+            InputHandler.enabled = false;
+
+            Motor.enabled = false;
+            Motor.IsHurting = false;
+            Motor.CanChangeInput = false;
+            Motor.CanChangeHorizontalDirection = false;
+        }
 
         public void Spawn(Transform place)
         {
@@ -116,7 +148,7 @@ namespace MMX.PlayerSystem
             RayIn.Spawn();
         }
 
-        public void UnSpawn() { }// => GetOut.GetOut();
+        public void UnSpawn() => GetOut.GetOut();
 
         public void Place(Transform place) => transform.SetPositionAndRotation(place.position, place.rotation);
 
