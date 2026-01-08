@@ -87,6 +87,7 @@ namespace MMX.PlayerSystem
 
         private static readonly int win = Animator.StringToHash("Win");
         private static readonly int spawn = Animator.StringToHash("Spawn");
+        private static readonly int getOut = Animator.StringToHash("GetOut");
         private static readonly int @switch = Animator.StringToHash("Switch");
 
         private static readonly string weaponLayerName = "Weapon";
@@ -133,6 +134,7 @@ namespace MMX.PlayerSystem
         #region Triggers
         public void Win() => Animator.SetTrigger(win);
         public void Spawn() => Animator.SetTrigger(spawn);
+        public void GetOut() => Animator.SetTrigger(getOut);
         public void Switch() => Animator.SetTrigger(@switch);
         #endregion
 
