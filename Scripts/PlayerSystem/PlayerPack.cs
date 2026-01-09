@@ -28,5 +28,19 @@ namespace MMX.PlayerSystem
 
             return players;
         }
+
+        public PlayerName GetNextAvailablePlayerName(PlayerName current)
+        {
+            var index = 0;
+
+            for (var i = 0; i < availablePlayers.Length; i++)
+            {
+                if (current == availablePlayers[i]) index = i + 1;
+            }
+
+            if (index >= availablePlayers.Length) index = 0;
+
+            return availablePlayers[index];
+        }
     }
 }

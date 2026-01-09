@@ -10,7 +10,6 @@ namespace MMX.PlayerSystem
     [DisallowMultipleComponent]
     public sealed class PlayerManager : MonoBehaviour
     {
-        public PlayerName first;
         [SerializeField] private PlayerPack pack;
 
         [Header("Switching")]
@@ -30,16 +29,14 @@ namespace MMX.PlayerSystem
         private Dictionary<PlayerName, Player> players;
         private PlayerName currentName = PlayerName.None;
 
-        private void Awake()
+        private async void Awake()
         {
             Instance = this;
 
-            FindPlayers();
+            await FindPlayers();
             FindFirst();
-            SortPlayers();
+            InitPlayers();
             UpdateSpawnPlace();
-
-            Current.Place(LastSpawnPlace);
         }
 
         private void OnDestroy() => Instance = null;
@@ -117,20 +114,17 @@ namespace MMX.PlayerSystem
             players.TryGetValue(playerName, out Player player) &&
             player.IsAbleToSwitchIn();
 
-        private PlayerName GetNextPlayerName()
-        {
-            var index = Current.Order;
-            if (++index >= players.Count) index = 0;
-            return players.Keys.ElementAt(index);
-        }
+        private PlayerName GetNextPlayerName() => pack.GetNextAvailablePlayerName(Current.Name);
 
-        private async void FindPlayers()
+        private async Awaitable FindPlayers()
         {
             players = GetScenePlayers();
-
             var hasAllPlayers = players.Count == pack.Count;
-            if (hasAllPlayers) return;
+            if (!hasAllPlayers) await InstantiateAvailablePlayers();
+        }
 
+        private async Awaitable InstantiateAvailablePlayers()
+        {
             var parent = GetPlayerParent();
 
             foreach (var playerName in pack.AvailablePlayers)
@@ -146,18 +140,12 @@ namespace MMX.PlayerSystem
             }
         }
 
-        private void FindFirst()
-        {
-            var hasFirstPlayer = players.TryGetValue(first, out var currentPlayer);
-            if (hasFirstPlayer) currentName = currentPlayer.Name;
-        }
+        private void FindFirst() => currentName = pack.AvailablePlayers[0];
 
-        private void SortPlayers()
+        private void InitPlayers()
         {
-            var index = 0;
             foreach (var player in players.Values)
             {
-                player.Order = index++;
                 player.Energy.CompleteToIntial(); //TODO improve EnergySystem
             }
         }
@@ -173,7 +161,7 @@ namespace MMX.PlayerSystem
             var players = new Dictionary<PlayerName, Player>();
             var scenePlayers = FindObjectsByType<Player>(
                 FindObjectsInactive.Include,
-                FindObjectsSortMode.InstanceID
+                FindObjectsSortMode.None
             );
 
             try

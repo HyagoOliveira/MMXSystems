@@ -47,7 +47,6 @@ namespace MMX.PlayerSystem
         public AbstractArmor CurrentArmor { get; private set; }
         public BoxCollider2D Collider => ColliderAdapter.Collider;
 
-        public int Order { get; internal set; }
         public bool Enabled => gameObject.activeInHierarchy;
         public bool IsUsingAnyArmor { get; private set; }
         public bool IsUsingAnyRideArmor { get; private set; }
