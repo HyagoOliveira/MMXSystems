@@ -106,7 +106,7 @@ namespace MMX.PlayerSystem
             await Current.GetOut.WaitWhileIsExecutingAsync();
 
             currentName = player;
-            Current.Switch(position, rotation);
+            Current.Spawn(position, rotation);
 
             OnPlayerSwitched?.Invoke(Current.Name);
         }
@@ -126,11 +126,7 @@ namespace MMX.PlayerSystem
 
         private async void FindPlayers()
         {
-            var scenePlayers = FindObjectsByType<Player>(
-                FindObjectsInactive.Include,
-                FindObjectsSortMode.InstanceID
-            );
-            players = scenePlayers.ToDictionary(p => p.Name, p => p);
+            players = GetScenePlayers();
 
             var hasAllPlayers = players.Count == pack.Count;
             if (hasAllPlayers) return;
@@ -170,6 +166,27 @@ namespace MMX.PlayerSystem
         {
             var parent = GameObject.Find("Players");
             return parent != null ? parent.transform : null;
+        }
+
+        private static Dictionary<PlayerName, Player> GetScenePlayers()
+        {
+            var players = new Dictionary<PlayerName, Player>();
+            var scenePlayers = FindObjectsByType<Player>(
+                FindObjectsInactive.Include,
+                FindObjectsSortMode.InstanceID
+            );
+
+            try
+            {
+                // May have duplicate keys
+                players = scenePlayers.ToDictionary(p => p.Name, p => p);
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
+
+            return players;
         }
     }
 }

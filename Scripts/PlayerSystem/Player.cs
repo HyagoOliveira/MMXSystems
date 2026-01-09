@@ -1,11 +1,12 @@
-using ActionCode.AnimatorStates;
-using ActionCode.ColliderAdapter;
-using ActionCode.EnergySystem;
+using System;
+using UnityEngine;
+using MMX.CoreSystem;
+using MMX.CharacterSystem;
 using ActionCode.Physics;
 using ActionCode.Sidescroller;
-using MMX.CharacterSystem;
-using MMX.CoreSystem;
-using UnityEngine;
+using ActionCode.EnergySystem;
+using ActionCode.AnimatorStates;
+using ActionCode.ColliderAdapter;
 
 namespace MMX.PlayerSystem
 {
@@ -73,6 +74,9 @@ namespace MMX.PlayerSystem
         public StuckState Stuck => StateMachine.GetState<StuckState>();*/
         #endregion
 
+        public event Action OnSpawned;
+        public event Action OnUnSpawned;
+
         private AbstractArmorLoader armorLoader;
 
         private void Reset()
@@ -107,7 +111,7 @@ namespace MMX.PlayerSystem
         public void Enable() => gameObject.SetActive(true);
         public void Disable() => gameObject.SetActive(false);
 
-        internal void EnableInteractions()
+        public void EnableInteractions()
         {
             Body.enabled = true;
             Body.Vertical.UseGravity = true;
@@ -122,7 +126,7 @@ namespace MMX.PlayerSystem
             Motor.CanChangeHorizontalDirection = true;
         }
 
-        internal void DisableInteractions()
+        public void DisableInteractions()
         {
             Body.StopSpeeds();
             Body.enabled = false;
@@ -141,19 +145,21 @@ namespace MMX.PlayerSystem
             Motor.CanChangeHorizontalDirection = false;
         }
 
-        public void Spawn(Transform place)
-        {
-            Place(place);
-            Enable();
-            RayIn.Spawn();
-        }
+        public void Spawn(Transform place) => Spawn(place.position, place.rotation);
 
-        public void UnSpawn() => GetOut.GetOut();
-
-        public void Switch(Vector3 position, Quaternion rotation)
+        public void Spawn(Vector3 position, Quaternion rotation)
         {
             Place(position, rotation);
             Enable();
+
+            RayIn.Spawn();
+            OnSpawned?.Invoke();
+        }
+
+        public void UnSpawn()
+        {
+            GetOut.GetOut();
+            OnUnSpawned?.Invoke();
         }
 
         public void Place(Transform place) => Place(place.position, place.rotation);
