@@ -1,9 +1,9 @@
-using MMX.CharacterSystem;
-using MMX.CoreSystem;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
+using MMX.CoreSystem;
+using MMX.CharacterSystem;
 
 namespace MMX.PlayerSystem
 {
@@ -99,9 +99,7 @@ namespace MMX.PlayerSystem
 
         private async Awaitable SwitchAsync(PlayerName player)
         {
-            var lastPosition = Current.transform.position;
-            var lastRotation = Current.transform.rotation;
-
+            Current.transform.GetPositionAndRotation(out var position, out var rotation);
             UnSpawn_Internal();
 
             await Awaitable.NextFrameAsync(); // Waits to enter in UnSpawn State.
@@ -109,7 +107,7 @@ namespace MMX.PlayerSystem
             //await Current.GetOut.WaitWhileIsExecutingAsync();
 
             currentName = player;
-            Current.SwitchBy(lastPosition, lastRotation);
+            Current.Switch(position, rotation);
 
             OnPlayerSwitched?.Invoke(Current.Name);
         }

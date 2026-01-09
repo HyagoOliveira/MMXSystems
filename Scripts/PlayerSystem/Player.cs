@@ -150,17 +150,16 @@ namespace MMX.PlayerSystem
 
         public void UnSpawn() => GetOut.GetOut();
 
-        public void Place(Transform place) => Place(place.position, place.rotation);
-        public void Place(Vector3 position, Quaternion rotation) => transform.SetPositionAndRotation(position, rotation);
-
-        public void ToggleIdle() => Idle.Toggle();
-
-        internal void SwitchBy(Vector3 position, Quaternion rotation)
+        public void Switch(Vector3 position, Quaternion rotation)
         {
             Place(position, rotation);
             Enable();
         }
 
+        public void Place(Transform place) => Place(place.position, place.rotation);
+        public void Place(Vector3 position, Quaternion rotation) => transform.SetPositionAndRotation(position, rotation);
+
+        public void ToggleIdle() => Idle.Toggle();
         #region Inputs
         public void SetMoveInput(Vector2 input)
         {
