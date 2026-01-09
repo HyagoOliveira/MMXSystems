@@ -103,8 +103,7 @@ namespace MMX.PlayerSystem
             UnSpawn_Internal();
 
             await Awaitable.NextFrameAsync(); // Waits to enter in UnSpawn State.
-            await Awaitable.WaitForSecondsAsync(1f);
-            //await Current.GetOut.WaitWhileIsExecutingAsync();
+            await Current.GetOut.WaitWhileIsExecutingAsync();
 
             currentName = player;
             Current.Switch(position, rotation);
