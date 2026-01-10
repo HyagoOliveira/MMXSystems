@@ -20,14 +20,18 @@ namespace MMX.PlayerSystem
         public bool IsSwitching { get; private set; }
         public Transform LastSpawnPlace { get; private set; }
 
-        public static event Action<PlayerName> OnPlayerSpawned;
-        public static event Action<PlayerName> OnPlayerSwitched;
-        public static event Action<PlayerName> OnPlayerUnSpawned;
+        public static event Action<Player> OnPlayerSpawned;
+        public static event Action<Player> OnPlayerSwitched;
+        public static event Action<Player> OnPlayerUnSpawned;
+        public static event Action<Player> OnPlayerKilled;
 
         private static PlayerManager Instance { get; set; }
 
         private Dictionary<PlayerName, Player> players;
         private PlayerName currentName = PlayerName.None;
+
+        private static readonly Quaternion rightRotation = Quaternion.identity;
+        private static readonly Quaternion leftRotation = Quaternion.Euler(Vector3.up * 180f);
 
         private async void Awake()
         {
@@ -61,18 +65,49 @@ namespace MMX.PlayerSystem
             if (Instance) Instance.SwitchToNext_Internal();
         }
 
+        public static void Kill()
+        {
+            if (Instance) Instance.Kill_Internal();
+        }
+
+        public static bool IsCollidingWithCurrentPlayer(Bounds bounds) =>
+            Instance.Current.Body.Collider.Bounds.Intersects(bounds);
+
+        public static Player GetCurrentPlayer() => Instance.Current;
+
+        public static float GetDistanceFromCurrentPlayer(Vector3 position) =>
+            Mathf.Abs(Vector2.Distance(Instance.Current.Center.position, position));
+
+        public static Vector3 GetDirectionFromCurrentPlayer(Vector3 position)
+        {
+            var delta = Instance.Current.Center.position - position;
+            return delta.normalized;
+        }
+
+        public static Quaternion GetRotation(float horizontalPosition)
+        {
+            var isPlayerLeft = Instance.Current.Center.position.x < horizontalPosition;
+            return isPlayerLeft ? leftRotation : rightRotation;
+        }
+
         private void Spawn_Internal(PlayerName player)
         {
             currentName = player;
 
             Current.Spawn(LastSpawnPlace);
-            OnPlayerSpawned?.Invoke(currentName);
+            OnPlayerSpawned?.Invoke(Current);
         }
 
         private void UnSpawn_Internal()
         {
             Current.UnSpawn();
-            OnPlayerUnSpawned?.Invoke(Current.Name);
+            OnPlayerUnSpawned?.Invoke(Current);
+        }
+
+        private void Kill_Internal()
+        {
+            Current.Kill();
+            OnPlayerKilled?.Invoke(Current);
         }
 
         private void SwitchToNext_Internal() => Switch_Internal(GetNextPlayerName());
@@ -105,7 +140,7 @@ namespace MMX.PlayerSystem
             currentName = player;
             Current.Spawn(position, rotation);
 
-            OnPlayerSwitched?.Invoke(Current.Name);
+            OnPlayerSwitched?.Invoke(Current);
         }
 
         private void UpdateSpawnPlace() => LastSpawnPlace = Place.Find("SpawnPlace");

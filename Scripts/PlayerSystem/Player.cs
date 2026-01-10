@@ -43,6 +43,7 @@ namespace MMX.PlayerSystem
 
         [field: Header("Data")]
         [field: SerializeField] public PlayerSoundsData Sounds { get; private set; }
+        [field: SerializeField] public Transform Center { get; private set; }
 
         public AbstractArmor CurrentArmor { get; private set; }
         public BoxCollider2D Collider => ColliderAdapter.Collider;
@@ -159,6 +160,12 @@ namespace MMX.PlayerSystem
         {
             GetOut.GetOut();
             OnUnSpawned?.Invoke();
+        }
+
+        public void Kill()
+        {
+            //Stuck.DisableAndCancel();
+            DisableInteractions();
         }
 
         public void Place(Transform place) => Place(place.position, place.rotation);
