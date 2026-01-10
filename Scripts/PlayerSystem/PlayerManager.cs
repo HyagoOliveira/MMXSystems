@@ -23,7 +23,7 @@ namespace MMX.PlayerSystem
         public static event Action<Player> OnPlayerSpawned;
         public static event Action<Player> OnPlayerSwitched;
         public static event Action<Player> OnPlayerUnSpawned;
-        public static event Action<Player> OnPlayerKilled;
+        //public static event Action<Player> OnPlayerKilled;
 
         private static PlayerManager Instance { get; set; }
 
@@ -107,7 +107,7 @@ namespace MMX.PlayerSystem
         private void Kill_Internal()
         {
             Current.Kill();
-            OnPlayerKilled?.Invoke(Current);
+            //OnPlayerKilled?.Invoke(Current);
         }
 
         private void SwitchToNext_Internal() => Switch_Internal(GetNextPlayerName());
