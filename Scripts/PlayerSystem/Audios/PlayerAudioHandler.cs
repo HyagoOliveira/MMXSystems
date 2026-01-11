@@ -35,8 +35,8 @@ namespace MMX.PlayerSystem
             player.Dash.OnExited += HandleDashExited;
             player.EndDash.OnEntered += HandleEndDashEntered;
 
-            //player.WallGrab.OnEntered += HandleWallGrabEntered;
-            //player.WallJump.OnEntered += HandleWallJumpEntered;
+            player.WallGrab.OnEntered += HandleWallGrabEntered;
+            player.WallJump.OnEntered += HandleWallJumpEntered;
 
             player.Jump.OnEntered += HandleJumpEntered;
             player.Land.OnEntered += HandleLandEntered;
@@ -59,8 +59,8 @@ namespace MMX.PlayerSystem
             player.Dash.OnExited -= HandleDashExited;
             player.EndDash.OnEntered -= HandleEndDashEntered;
 
-            //player.WallGrab.OnEntered -= HandleWallGrabEntered;
-            //player.WallJump.OnEntered -= HandleWallJumpEntered;
+            player.WallGrab.OnEntered -= HandleWallGrabEntered;
+            player.WallJump.OnEntered -= HandleWallJumpEntered;
 
             player.Jump.OnEntered -= HandleJumpEntered;
             player.Land.OnEntered -= HandleLandEntered;
