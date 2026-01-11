@@ -10,6 +10,7 @@ namespace MMX.PlayerSystem
         [SerializeField] private AudioSource bodySource;
         [SerializeField] private AudioSource bootsSource;
         [SerializeField] private AudioSource dashMiddleSource;
+        [SerializeField] private AudioSource wallSlideSource;
 
         private PlayerSoundsData Sounds => player.Sounds;
 
@@ -18,7 +19,9 @@ namespace MMX.PlayerSystem
         private void Awake()
         {
             player = GetComponentInParent<Player>();
+
             dashMiddleSource.clip = Sounds.common.dashMiddle;
+            wallSlideSource.clip = Sounds.common.wallSlide;
         }
 
         private void OnEnable()
@@ -40,6 +43,8 @@ namespace MMX.PlayerSystem
 
             player.Jump.OnEntered += HandleJumpEntered;
             player.Land.OnEntered += HandleLandEntered;
+            player.WallSlide.OnEntered += HandleWallSlideEntered;
+            player.WallSlide.OnExited += HandleWallSlideExited;
 
             player.AnimationEvents.OnVictory += HandleGetReadied;
             player.AnimationEvents.OnGetReadied += HandleGetReadied;
@@ -61,6 +66,8 @@ namespace MMX.PlayerSystem
 
             player.WallGrab.OnEntered -= HandleWallGrabEntered;
             player.WallJump.OnEntered -= HandleWallJumpEntered;
+            player.WallSlide.OnEntered -= HandleWallSlideEntered;
+            player.WallSlide.OnExited -= HandleWallSlideExited;
 
             player.Jump.OnEntered -= HandleJumpEntered;
             player.Land.OnEntered -= HandleLandEntered;
@@ -116,6 +123,14 @@ namespace MMX.PlayerSystem
         private void HandleWallGrabEntered() => PlayWallGrab();
         private void HandleWallJumpEntered() => PlayWallJumpShout();
 
+        private void HandleWallSlideEntered()
+        {
+            var playWallSlideSound = player.WallSlide.HasSpeed();
+            if (playWallSlideSound) PlayWallSlide();
+        }
+
+        private void HandleWallSlideExited() => StopWallSlide();
+
         private void HandleJumpEntered()
         {
             PlayBootsJump();
@@ -137,6 +152,8 @@ namespace MMX.PlayerSystem
 
         private void PlayWallGrab() => bodySource.PlayOneShot(Sounds.wallGrab);
         private void PlayWallJumpShout() => headSource.PlayOneShot(Sounds.voice.wallJump);
+        private void PlayWallSlide() => wallSlideSource.Play();
+        private void StopWallSlide() => wallSlideSource.Stop();
 
         private void PlayLand() => bootsSource.PlayOneShot(Sounds.land);
         private void PlayBusterAttack() => headSource.PlayOneShot(Sounds.voice.busterAttack);

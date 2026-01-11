@@ -172,6 +172,7 @@ namespace MMX.PlayerSystem
         public void Place(Vector3 position, Quaternion rotation) => transform.SetPositionAndRotation(position, rotation);
 
         public void ToggleIdle() => Idle.Toggle();
+
         #region Inputs
         public void SetMoveInput(Vector2 input)
         {
@@ -185,7 +186,7 @@ namespace MMX.PlayerSystem
         public void SetJumpInput(bool hasInput)
         {
             Jump.Input.Set(hasInput);
-            //WallJump.SetInput(hasInput);
+            WallJump.SetInput(hasInput);
         }
 
         public void SetDashInput(bool hasInput) => Dash.Input.Set(hasInput);
