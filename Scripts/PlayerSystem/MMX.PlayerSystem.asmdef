@@ -3,6 +3,7 @@
     "rootNamespace": "MMX.PlayerSystem",
     "references": [
         "GUID:4eb5edba304c8a249b4e3a5c573563a4",
+        "GUID:0d84d6ceb2f4e7b4f906d638c386e863",
         "GUID:09275cd1284174a43bc0d48b89073298",
         "GUID:399ce299f954484438a97a6f9e0090dd",
         "GUID:d989ee66b9b10ce4f97712c0ddd5a8c9",

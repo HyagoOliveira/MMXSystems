@@ -21,8 +21,8 @@ namespace MMX.PlayerSystem
         public Transform LastSpawnPlace { get; private set; }
 
         public static event Action<Player> OnPlayerSpawned;
-        public static event Action<Player> OnPlayerSwitched;
         public static event Action<Player> OnPlayerUnSpawned;
+        public static event Action<Player> OnPlayerSwitched;
         //public static event Action<Player> OnPlayerKilled;
 
         private static PlayerManager Instance { get; set; }
@@ -45,9 +45,9 @@ namespace MMX.PlayerSystem
 
         private void OnDestroy() => Instance = null;
 
-        public static void Spawn(PlayerName player)
+        public static void Spawn(PlayerName player, Vector3 position, Quaternion rotation)
         {
-            if (Instance) Instance.Spawn_Internal(player);
+            if (Instance) Instance.Spawn_Internal(player, position, rotation);
         }
 
         public static void UnSpawn()
@@ -90,11 +90,11 @@ namespace MMX.PlayerSystem
             return isPlayerLeft ? leftRotation : rightRotation;
         }
 
-        private void Spawn_Internal(PlayerName player)
+        private void Spawn_Internal(PlayerName player, Vector3 position, Quaternion rotation)
         {
             currentName = player;
 
-            Current.Spawn(LastSpawnPlace);
+            Current.Spawn(position, rotation);
             OnPlayerSpawned?.Invoke(Current);
         }
 
@@ -137,9 +137,7 @@ namespace MMX.PlayerSystem
             await Awaitable.NextFrameAsync(); // Waits to enter in UnSpawn State.
             await Current.GetOut.WaitWhileIsExecutingAsync();
 
-            currentName = player;
-            Current.Spawn(position, rotation);
-
+            Spawn_Internal(player, position, rotation);
             OnPlayerSwitched?.Invoke(Current);
         }
 
