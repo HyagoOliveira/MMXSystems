@@ -17,6 +17,12 @@ namespace MMX.PlayerSystem
             internal set => Animator.SetFloat(idleIndex, value);
         }
 
+        public float StuckMotionTime
+        {
+            get => Animator.GetFloat(stuckMotionTime);
+            internal set => Animator.SetFloat(stuckMotionTime, value);
+        }
+
         public bool IsRay
         {
             get => Animator.GetBool(isRay);
@@ -70,6 +76,12 @@ namespace MMX.PlayerSystem
             get => Animator.GetBool(hasHorizontalInput);
             internal set => Animator.SetBool(hasHorizontalInput, value);
         }
+
+        public bool IsStucked
+        {
+            get => Animator.GetBool(isStucked);
+            internal set => Animator.SetBool(isStucked, value);
+        }
         #endregion
 
         #region Hashes
@@ -81,7 +93,9 @@ namespace MMX.PlayerSystem
         private static readonly int isFalling = Animator.StringToHash("IsFalling");
         private static readonly int isHurting = Animator.StringToHash("IsHurting");
         private static readonly int isDashing = Animator.StringToHash("IsDashing");
+        private static readonly int isStucked = Animator.StringToHash("IsStucked");
         private static readonly int isPushingWall = Animator.StringToHash("IsPushingWall");
+        private static readonly int stuckMotionTime = Animator.StringToHash("StuckMotionTime");
         private static readonly int isFacingCollision = Animator.StringToHash("IsFacingCollision");
         private static readonly int hasHorizontalInput = Animator.StringToHash("HasHorizontalInput");
 
@@ -89,6 +103,7 @@ namespace MMX.PlayerSystem
         private static readonly int spawn = Animator.StringToHash("Spawn");
         private static readonly int getOut = Animator.StringToHash("GetOut");
         private static readonly int @switch = Animator.StringToHash("Switch");
+
 
         private static readonly string weaponLayerName = "Weapon";
 
