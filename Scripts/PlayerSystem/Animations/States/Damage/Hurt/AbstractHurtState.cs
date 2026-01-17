@@ -11,6 +11,9 @@ namespace MMX.PlayerSystem
             Body.StopSpeeds();
             Body.Vertical.UseGravity = false;
 
+            Player.Jump.enabled = false;
+            Player.Dash.enabled = false;
+
             Motor.IsHurting = true;
             Motor.CanChangeInput = false;
             Motor.CanChangeHorizontalDirection = false;
@@ -23,6 +26,9 @@ namespace MMX.PlayerSystem
         {
             base.ExitState();
             Body.Vertical.UseGravity = true;
+
+            Player.Jump.enabled = true;
+            Player.Dash.enabled = true;
 
             Motor.IsHurting = false;
             Motor.CanChangeInput = true;
