@@ -19,6 +19,8 @@ namespace MMX.PlayerSystem
             Motor.CanChangeInput = true;
             Motor.CanChangeHorizontalDirection = true;
 
+            Player.Jump.enabled = false;
+            Player.Dash.enabled = false;
             Player.Fall.ResetCurrentHorizontalSpeed();
             Player.Damageable.IsInvulnerable = true;
             Player.Damageable.OnDamaged += HandleDamaged;
@@ -33,6 +35,8 @@ namespace MMX.PlayerSystem
             Motor.CanChangeInput = true;
             Motor.CanChangeHorizontalDirection = true;
 
+            Player.Jump.enabled = true;
+            Player.Dash.enabled = true;
             Player.Damageable.IsInvulnerable = false;
             Player.Damageable.OnDamaged -= HandleDamaged;
         }

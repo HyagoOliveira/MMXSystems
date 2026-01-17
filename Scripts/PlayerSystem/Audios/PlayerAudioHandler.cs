@@ -31,7 +31,7 @@ namespace MMX.PlayerSystem
             //player.BigHurt.OnEntered += HandleHurtEntered;
             //player.NormalHurt.OnEntered += HandleHurtEntered;
             player.RayIn.OnEntered += HandleRayInEntered;
-            //player.Stuck.OnEntered += HandleHurtEntered;
+            player.Stuck.OnEntered += HandleHurtEntered;
 
             player.StartDash.OnEntered += HandleStartDashEntered;
             player.Dash.OnEntered += HandleDashEntered;
@@ -57,7 +57,7 @@ namespace MMX.PlayerSystem
             //player.BigHurt.OnEntered -= HandleHurtEntered;
             //player.NormalHurt.OnEntered -= HandleHurtEntered;
             player.RayIn.OnEntered -= HandleRayInEntered;
-            //player.Stuck.OnEntered -= HandleHurtEntered;
+            player.Stuck.OnEntered -= HandleHurtEntered;
 
             player.StartDash.OnEntered -= HandleStartDashEntered;
             player.Dash.OnEntered -= HandleDashEntered;

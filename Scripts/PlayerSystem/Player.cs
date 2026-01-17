@@ -70,8 +70,8 @@ namespace MMX.PlayerSystem
         /*public ZiplineLocomotionState ZiplineLocomotion => StateMachine.GetState<ZiplineLocomotionState>();
         public NormalHurtState NormalHurt => StateMachine.GetState<NormalHurtState>();
         public BigHurtState BigHurt => StateMachine.GetState<BigHurtState>();
-        public DeathState Death => StateMachine.GetState<DeathState>();
-        public StuckState Stuck => StateMachine.GetState<StuckState>();*/
+        public DeathState Death => StateMachine.GetState<DeathState>();*/
+        public StuckState Stuck => StateMachine.GetState<StuckState>();
         #endregion
 
         public event Action OnSpawned;
@@ -103,7 +103,7 @@ namespace MMX.PlayerSystem
         public bool IsAbleToSwitchIn() => !Enabled && IsAlive();
         public bool IsAbleToSwitchOut() => Body.IsGrounded && IsValidState() && Damageable.IsAbleToReceiveDamage();
         public bool IsValidState() => Enabled && IsAlive() && !IsUsingAnyRideArmor && !IsStucked() && !Motor.IsClimbing();
-        public bool IsStucked() => false;// Stuck.IsExecuting;
+        public bool IsStucked() => Stuck.IsExecuting;
 
         //TODO load armor from GameData
         public async void LoadArmor(ArmorName armor) => CurrentArmor = await armorLoader.LoadAsync(armor);
@@ -164,7 +164,7 @@ namespace MMX.PlayerSystem
 
         public void Kill()
         {
-            //Stuck.DisableAndCancel();
+            Stuck.DisableAndCancel();
             DisableInteractions();
         }
 
