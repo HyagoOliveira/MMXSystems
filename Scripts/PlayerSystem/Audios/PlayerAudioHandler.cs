@@ -28,8 +28,8 @@ namespace MMX.PlayerSystem
         {
             //player.Death.OnEntered += HandleDeathEntered;
             player.GetOut.OnEntered += HandleGetOutEntered;
-            //player.BigHurt.OnEntered += HandleHurtEntered;
-            //player.NormalHurt.OnEntered += HandleHurtEntered;
+            player.BigHurt.OnEntered += HandleHurtEntered;
+            player.NormalHurt.OnEntered += HandleHurtEntered;
             player.RayIn.OnEntered += HandleRayInEntered;
             player.Stuck.OnEntered += HandleHurtEntered;
 
@@ -54,8 +54,8 @@ namespace MMX.PlayerSystem
         {
             //player.Death.OnEntered -= HandleDeathEntered;
             player.GetOut.OnEntered -= HandleGetOutEntered;
-            //player.BigHurt.OnEntered -= HandleHurtEntered;
-            //player.NormalHurt.OnEntered -= HandleHurtEntered;
+            player.BigHurt.OnEntered -= HandleHurtEntered;
+            player.NormalHurt.OnEntered -= HandleHurtEntered;
             player.RayIn.OnEntered -= HandleRayInEntered;
             player.Stuck.OnEntered -= HandleHurtEntered;
 

@@ -103,7 +103,8 @@ namespace MMX.PlayerSystem
         private static readonly int spawn = Animator.StringToHash("Spawn");
         private static readonly int getOut = Animator.StringToHash("GetOut");
         private static readonly int @switch = Animator.StringToHash("Switch");
-
+        private static readonly int bigHurt = Animator.StringToHash("BigHurt");
+        private static readonly int normalHurt = Animator.StringToHash("NormalHurt");
 
         private static readonly string weaponLayerName = "Weapon";
 
@@ -131,19 +132,19 @@ namespace MMX.PlayerSystem
         /// Locked States are states where cannot exit without finish it completely.
         /// </summary>
         /// <returns></returns>
-        public bool IsExecutingAnyLockedState() => true;
-        /*player.StateMachine.IsExecuting<DeathState>() ||
-        player.StateMachine.IsExecuting<StuckState>() ||
-        player.StateMachine.IsExecuting<BigHurtState>() ||
-        player.StateMachine.IsExecuting<NormalHurtState>() ||
-        player.StateMachine.IsExecuting<ZiplineAttachState>() ||
-        player.StateMachine.IsExecuting<ClimbLadderUpState>() ||
-        player.StateMachine.IsExecuting<ClimbLadderDownState>() ||
-        player.StateMachine.IsExecuting<GetLadderUpState>() ||
-        player.StateMachine.IsExecuting<GetLadderDownState>() ||
-        player.StateMachine.IsExecuting<SaberLadderAttackState>() ||
-        player.StateMachine.IsExecuting<BusterLadderAttackState>() ||
-        player.StateMachine.IsExecuting<Zero.ChargedBusterAttackState>();*/
+        public bool IsExecutingAnyLockedState() =>
+            //player.StateMachine.IsExecuting<DeathState>() ||
+            player.StateMachine.IsExecuting<StuckState>() ||
+            player.StateMachine.IsExecuting<BigHurtState>() ||
+            player.StateMachine.IsExecuting<NormalHurtState>() ||
+            //player.StateMachine.IsExecuting<ZiplineAttachState>() ||
+            player.StateMachine.IsExecuting<ClimbLadderUpState>() ||
+            player.StateMachine.IsExecuting<ClimbLadderDownState>() ||
+            player.StateMachine.IsExecuting<GetLadderUpState>() ||
+            player.StateMachine.IsExecuting<GetLadderDownState>();/* ||
+            player.StateMachine.IsExecuting<SaberLadderAttackState>() ||
+            player.StateMachine.IsExecuting<BusterLadderAttackState>() ||
+            player.StateMachine.IsExecuting<Zero.ChargedBusterAttackState>();*/
 
 
         #region Triggers
@@ -151,6 +152,8 @@ namespace MMX.PlayerSystem
         public void Spawn() => Animator.SetTrigger(spawn);
         public void GetOut() => Animator.SetTrigger(getOut);
         public void Switch() => Animator.SetTrigger(@switch);
+        public void BigHurt() => Animator.SetTrigger(bigHurt);
+        public void NormalHurt() => Animator.SetTrigger(normalHurt);
         #endregion
 
         #region Layers

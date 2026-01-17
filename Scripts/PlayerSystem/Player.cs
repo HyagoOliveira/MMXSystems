@@ -67,10 +67,10 @@ namespace MMX.PlayerSystem
         public WallSlideState WallSlide => StateMachine.GetState<WallSlideState>();
         public WallJumpState WallJump => StateMachine.GetState<WallJumpState>();
         public ClimbLadderState ClimbLadder => StateMachine.GetState<ClimbLadderState>();
-        /*public ZiplineLocomotionState ZiplineLocomotion => StateMachine.GetState<ZiplineLocomotionState>();
+        //public ZiplineLocomotionState ZiplineLocomotion => StateMachine.GetState<ZiplineLocomotionState>();
         public NormalHurtState NormalHurt => StateMachine.GetState<NormalHurtState>();
         public BigHurtState BigHurt => StateMachine.GetState<BigHurtState>();
-        public DeathState Death => StateMachine.GetState<DeathState>();*/
+        //public DeathState Death => StateMachine.GetState<DeathState>();
         public StuckState Stuck => StateMachine.GetState<StuckState>();
         #endregion
 
