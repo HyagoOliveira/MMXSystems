@@ -23,7 +23,7 @@ namespace MMX.PlayerSystem
             Player.Dash.enabled = false;
             Player.Fall.ResetCurrentHorizontalSpeed();
             Player.Damageable.IsInvulnerable = true;
-            Player.Damageable.OnDamaged += HandleDamaged;
+            Player.Damageable.OnDamageTaken += HandleDamaged;
         }
 
         protected override void ExitState()
@@ -38,7 +38,7 @@ namespace MMX.PlayerSystem
             Player.Jump.enabled = true;
             Player.Dash.enabled = true;
             Player.Damageable.IsInvulnerable = false;
-            Player.Damageable.OnDamaged -= HandleDamaged;
+            Player.Damageable.OnDamageTaken -= HandleDamaged;
         }
 
         public void EnableFor(uint frames)
@@ -56,7 +56,7 @@ namespace MMX.PlayerSystem
             StopAllCoroutines();
         }
 
-        private void HandleDamaged(Damager damager) => StartCoroutine(PlayHurtAnimation());
+        private void HandleDamaged(Damager _) => StartCoroutine(PlayHurtAnimation());
 
         private IEnumerator PlayHurtAnimation()
         {

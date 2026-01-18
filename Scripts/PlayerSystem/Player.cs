@@ -40,6 +40,7 @@ namespace MMX.PlayerSystem
         [field: Header("Health")]
         [field: SerializeField] public Energy Energy { get; private set; }
         [field: SerializeField] public Damageable Damageable { get; private set; }
+        [field: SerializeField] public DamageableFeedback DamageFeedback { get; private set; }
 
         [field: Header("Data")]
         [field: SerializeField] public PlayerSoundsData Sounds { get; private set; }

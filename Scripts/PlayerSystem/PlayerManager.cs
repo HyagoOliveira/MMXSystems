@@ -39,7 +39,7 @@ namespace MMX.PlayerSystem
 
             await FindPlayers();
             FindFirst();
-            InitPlayers();
+            //InitPlayers();
             UpdateSpawnPlace();
         }
 
@@ -175,13 +175,13 @@ namespace MMX.PlayerSystem
 
         private void FindFirst() => currentName = pack.AvailablePlayers[0];
 
-        private void InitPlayers()
+        /*private void InitPlayers()
         {
             foreach (var player in players.Values)
             {
-                player.Energy.CompleteToIntial(); //TODO improve EnergySystem
+                player.Energy.CompleteToInitial(); //TODO improve EnergySystem
             }
-        }
+        }*/
 
         private static Transform GetPlayerParent()
         {

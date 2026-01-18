@@ -34,12 +34,12 @@ namespace MMX.PlayerSystem
             Motor.CanChangeInput = true;
             Motor.CanChangeHorizontalDirection = true;
 
-            Player.Damageable.feedback.IsPlayingDamageAnimation = false;
+            Player.DamageFeedback.IsPlayingDamageAnimation = false;
         }
 
         public void Trigger()
         {
-            Player.Damageable.feedback.IsPlayingDamageAnimation = true;
+            Player.DamageFeedback.IsPlayingDamageAnimation = true;
             ApplyTrigger();
         }
 
