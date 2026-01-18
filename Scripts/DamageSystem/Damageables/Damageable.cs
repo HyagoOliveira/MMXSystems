@@ -33,11 +33,18 @@ namespace MMX.DamageSystem
             Energy.CompleteToInitial();
         }
 
+        public bool TryTakeDamage(IDamager damager)
+        {
+            var canTakeDamage = IsAbleToTakeDamage();
+            if (canTakeDamage) TakeDamage(damager);
+            return canTakeDamage;
+        }
+
         public void TakeDamage(IDamager damager)
         {
             if (Energy)
             {
-                var damage = damager.CurrentAmount;
+                var damage = damager.Amount;
                 Energy.Remove(damage);
 
                 if (Energy.IsEmpty())

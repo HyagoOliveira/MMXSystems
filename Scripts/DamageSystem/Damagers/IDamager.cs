@@ -17,9 +17,9 @@ namespace MMX.DamageSystem
         event Action<Damageable> OnDamageInflicted;
 
         /// <summary>
-        /// The current damage amount to inflict.
+        /// The damage amount to inflict.
         /// </summary>
-        public float CurrentAmount { get; set; }
+        public float Amount { get; set; }
 
         /// <summary>
         /// Checks whether can inflict damage into the given damagable instance.
