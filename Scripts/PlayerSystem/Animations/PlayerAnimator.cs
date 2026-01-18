@@ -77,6 +77,12 @@ namespace MMX.PlayerSystem
             internal set => Animator.SetBool(hasHorizontalInput, value);
         }
 
+        public bool HasAnyDirectionalInput
+        {
+            get => Animator.GetBool(hasAnyDirectionalInput);
+            internal set => Animator.SetBool(hasAnyDirectionalInput, value);
+        }
+
         public bool IsStucked
         {
             get => Animator.GetBool(isStucked);
@@ -98,6 +104,7 @@ namespace MMX.PlayerSystem
         private static readonly int stuckMotionTime = Animator.StringToHash("StuckMotionTime");
         private static readonly int isFacingCollision = Animator.StringToHash("IsFacingCollision");
         private static readonly int hasHorizontalInput = Animator.StringToHash("HasHorizontalInput");
+        private static readonly int hasAnyDirectionalInput = Animator.StringToHash("HasAnyDirectionalInput");
 
         private static readonly int win = Animator.StringToHash("Win");
         private static readonly int spawn = Animator.StringToHash("Spawn");

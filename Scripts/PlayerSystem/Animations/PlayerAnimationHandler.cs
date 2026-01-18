@@ -25,6 +25,7 @@ namespace MMX.PlayerSystem
             Animator.IsPushingWall = Motor.IsPushingWall();
             Animator.IsFacingCollision = Motor.IsFacingCollision();
             Animator.HasHorizontalInput = Motor.HasInputHorizontal();
+            Animator.HasAnyDirectionalInput = Motor.HasInputHorizontal() || Motor.HasInputDown();
         }
     }
 }
