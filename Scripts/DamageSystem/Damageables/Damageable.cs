@@ -22,7 +22,6 @@ namespace MMX.DamageSystem
         public event Action<IDamager> OnDamageTaken;
 
         private void Reset() => Energy = GetComponentInChildren<Energy>();
-        //private void Start() { /* To show the component Toggle in the Inspector*/ }
 
         public bool IsDestroyed() => !enabled;
         public bool IsAbleToTakeDamage() => enabled && !IsInvulnerable;
