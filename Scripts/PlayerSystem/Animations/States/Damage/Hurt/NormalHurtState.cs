@@ -6,16 +6,15 @@ namespace MMX.PlayerSystem
     [DisallowMultipleComponent]
     public sealed class NormalHurtState : AbstractHurtState
     {
-        [Header("Fallback")]
-        [SerializeField] private float decrement = 0.8F;
-        [SerializeField] private float initialSpeed = 8.68F;
-
         public static readonly WaitForFixedUpdate waitOneFrame = new();
 
         protected override void ApplyTrigger() => Player.Animator.NormalHurt();
 
         protected override IEnumerator Fallback()
         {
+            const float decrement = 0.8F;
+            const float initialSpeed = 8.68F;
+
             var speed = initialSpeed;
 
             do
