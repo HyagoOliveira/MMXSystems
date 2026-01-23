@@ -36,6 +36,7 @@ namespace MMX.PlayerSystem
         [field: Header("Handlers")]
         [field: SerializeField] public PlayerInputHandler InputHandler { get; private set; }
         [field: SerializeField] public PlayerAnimationHandler AnimationHandler { get; private set; }
+        [field: SerializeField] public PlayerDamageableHandler DamageableHandler { get; private set; }
 
         [field: Header("Health")]
         [field: SerializeField] public Energy Energy { get; private set; }
