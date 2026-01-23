@@ -1,9 +1,13 @@
+using UnityEngine;
 using System.Collections;
 
 namespace MMX.PlayerSystem
 {
     public abstract class AbstractHurtState : AbstractState
     {
+        [Space]
+        [SerializeField] private Vector2 falbackSpeed;
+
         protected override void EnterState()
         {
             base.EnterState();
@@ -18,13 +22,26 @@ namespace MMX.PlayerSystem
             Motor.CanChangeInput = false;
             Motor.CanChangeHorizontalDirection = false;
 
-            var shouldFallback = !StateMachine.WasExecuting<StuckState>();
-            if (shouldFallback) StartCoroutine(Fallback());
+            var canFallback = !StateMachine.WasExecuting<StuckState>();
+            if (!canFallback) return;
+
+            var hasFallbackSpeed = falbackSpeed.sqrMagnitude > 0f;
+            if (hasFallbackSpeed)
+            {
+                Body.Vertical.Speed = falbackSpeed.y;
+                Body.Vertical.UseGravity = Body.Vertical.HasSpeed();
+                Body.Horizontal.Speed = GetFallbackHorizontalSpeed(falbackSpeed.x);
+                return;
+            }
+
+            StartCoroutine(Fallback());
         }
 
         protected override void ExitState()
         {
             base.ExitState();
+
+            Body.StopSpeeds();
             Body.Vertical.UseGravity = true;
 
             Player.Jump.enabled = true;
