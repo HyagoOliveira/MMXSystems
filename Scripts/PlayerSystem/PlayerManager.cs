@@ -73,6 +73,7 @@ namespace MMX.PlayerSystem
         public static bool IsCollidingWithCurrentPlayer(Bounds bounds) =>
             Instance.Current.Body.Collider.Bounds.Intersects(bounds);
 
+        public static bool HasCurrentPlayer() => GetCurrentPlayer() != null;
         public static Player GetCurrentPlayer() => Instance.Current;
 
         public static float GetDistanceFromCurrentPlayer(Vector3 position) =>
