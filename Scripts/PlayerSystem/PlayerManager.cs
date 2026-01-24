@@ -23,7 +23,6 @@ namespace MMX.PlayerSystem
         public static event Action<Player> OnPlayerSpawned;
         public static event Action<Player> OnPlayerUnSpawned;
         public static event Action<Player> OnPlayerSwitched;
-        //public static event Action<Player> OnPlayerKilled;
 
         private static PlayerManager Instance { get; set; }
 
@@ -65,11 +64,6 @@ namespace MMX.PlayerSystem
             if (Instance) Instance.SwitchToNext_Internal();
         }
 
-        public static void Kill()
-        {
-            if (Instance) Instance.Kill_Internal();
-        }
-
         public static bool IsCollidingWithCurrentPlayer(Bounds bounds) =>
             Instance.Current.Body.Collider.Bounds.Intersects(bounds);
 
@@ -103,12 +97,6 @@ namespace MMX.PlayerSystem
         {
             Current.UnSpawn();
             OnPlayerUnSpawned?.Invoke(Current);
-        }
-
-        private void Kill_Internal()
-        {
-            Current.Kill();
-            //OnPlayerKilled?.Invoke(Current);
         }
 
         private void SwitchToNext_Internal() => Switch_Internal(GetNextPlayerName());

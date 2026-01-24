@@ -76,8 +76,10 @@ namespace MMX.PlayerSystem
         public StuckState Stuck => StateMachine.GetState<StuckState>();
         #endregion
 
+        public event Action OnKilled;
         public event Action OnSpawned;
         public event Action OnUnSpawned;
+        public event Action OnRestarted;
 
         private AbstractArmorLoader armorLoader;
 
@@ -166,8 +168,16 @@ namespace MMX.PlayerSystem
 
         public void Kill()
         {
+            Animator.Kill();
             Stuck.DisableAndCancel();
             DisableInteractions();
+            OnKilled?.Invoke();
+        }
+
+        public void Restart()
+        {
+            Energy.CompleteToInitial();
+            OnRestarted?.Invoke();
         }
 
         public void Place(Transform place) => Place(place.position, place.rotation);

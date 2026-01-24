@@ -12,8 +12,18 @@ namespace MMX.PlayerSystem
         private void Reset() => player = GetComponent<Player>();
         private void Awake() => OverrideGetDamageFunction();
         private void FixedUpdate() => CheckDeathCollisions();
-        private void OnEnable() => player.Damageable.OnDamageTaken += HandleDamaged;
-        private void OnDisable() => player.Damageable.OnDamageTaken -= HandleDamaged;
+
+        private void OnEnable()
+        {
+            player.Energy.OnEnergyEnded += HandleEnergyEnded;
+            player.Damageable.OnDamageTaken += HandleDamaged;
+        }
+
+        private void OnDisable()
+        {
+            player.Energy.OnEnergyEnded -= HandleEnergyEnded;
+            player.Damageable.OnDamageTaken -= HandleDamaged;
+        }
 
         private void CheckDeathCollisions()
         {
@@ -23,6 +33,8 @@ namespace MMX.PlayerSystem
             //TODO: check crush death too
             if (isDead) player.Energy.RemoveAll();
         }
+
+        private void HandleEnergyEnded() => player.Kill();
 
         private void HandleDamaged(Damager damager)
         {

@@ -14,79 +14,85 @@ namespace MMX.PlayerSystem
         public float IdleIndex
         {
             get => Animator.GetFloat(idleIndex);
-            internal set => Animator.SetFloat(idleIndex, value);
+            set => Animator.SetFloat(idleIndex, value);
         }
 
         public float StuckMotionTime
         {
             get => Animator.GetFloat(stuckMotionTime);
-            internal set => Animator.SetFloat(stuckMotionTime, value);
+            set => Animator.SetFloat(stuckMotionTime, value);
         }
 
         public bool IsRay
         {
             get => Animator.GetBool(isRay);
-            internal set => Animator.SetBool(isRay, value);
+            set => Animator.SetBool(isRay, value);
+        }
+
+        public bool IsDead
+        {
+            get => Animator.GetBool(isDead);
+            set => Animator.SetBool(isDead, value);
         }
 
         public bool IsGrounded
         {
             get => Animator.GetBool(isGrounded);
-            internal set => Animator.SetBool(isGrounded, value);
+            set => Animator.SetBool(isGrounded, value);
         }
 
         public bool IsAirborne
         {
             get => Animator.GetBool(isAirborne);
-            internal set => Animator.SetBool(isAirborne, value);
+            set => Animator.SetBool(isAirborne, value);
         }
 
         public bool IsFalling
         {
             get => Animator.GetBool(isFalling);
-            internal set => Animator.SetBool(isFalling, value);
+            set => Animator.SetBool(isFalling, value);
         }
 
         public bool IsHurting
         {
             get => Animator.GetBool(isHurting);
-            internal set => Animator.SetBool(isHurting, value);
+            set => Animator.SetBool(isHurting, value);
         }
 
         public bool IsDashing
         {
             get => Animator.GetBool(isDashing);
-            internal set => Animator.SetBool(isDashing, value);
+            set => Animator.SetBool(isDashing, value);
         }
 
         public bool IsPushingWall
         {
             get => Animator.GetBool(isPushingWall);
-            internal set => Animator.SetBool(isPushingWall, value);
+            set => Animator.SetBool(isPushingWall, value);
         }
 
         public bool IsFacingCollision
         {
             get => Animator.GetBool(isFacingCollision);
-            internal set => Animator.SetBool(isFacingCollision, value);
+            set => Animator.SetBool(isFacingCollision, value);
         }
 
         public bool HasHorizontalInput
         {
             get => Animator.GetBool(hasHorizontalInput);
-            internal set => Animator.SetBool(hasHorizontalInput, value);
+            set => Animator.SetBool(hasHorizontalInput, value);
         }
 
         public bool HasAnyDirectionalInput
         {
             get => Animator.GetBool(hasAnyDirectionalInput);
-            internal set => Animator.SetBool(hasAnyDirectionalInput, value);
+            set => Animator.SetBool(hasAnyDirectionalInput, value);
         }
 
         public bool IsStucked
         {
             get => Animator.GetBool(isStucked);
-            internal set => Animator.SetBool(isStucked, value);
+            set => Animator.SetBool(isStucked, value);
         }
         #endregion
 
@@ -94,6 +100,7 @@ namespace MMX.PlayerSystem
         private static readonly int idleIndex = Animator.StringToHash("IdleIndex");
 
         private static readonly int isRay = Animator.StringToHash("IsRay");
+        private static readonly int isDead = Animator.StringToHash("IsDead");
         private static readonly int isGrounded = Animator.StringToHash("IsGrounded");
         private static readonly int isAirborne = Animator.StringToHash("IsAirborne");
         private static readonly int isFalling = Animator.StringToHash("IsFalling");
@@ -107,6 +114,7 @@ namespace MMX.PlayerSystem
         private static readonly int hasAnyDirectionalInput = Animator.StringToHash("HasAnyDirectionalInput");
 
         private static readonly int win = Animator.StringToHash("Win");
+        private static readonly int kill = Animator.StringToHash("Kill");
         private static readonly int spawn = Animator.StringToHash("Spawn");
         private static readonly int getOut = Animator.StringToHash("GetOut");
         private static readonly int @switch = Animator.StringToHash("Switch");
@@ -156,6 +164,7 @@ namespace MMX.PlayerSystem
 
         #region Triggers
         public void Win() => Animator.SetTrigger(win);
+        public void Kill() => Animator.SetTrigger(kill);
         public void Spawn() => Animator.SetTrigger(spawn);
         public void GetOut() => Animator.SetTrigger(getOut);
         public void Switch() => Animator.SetTrigger(@switch);
