@@ -1,4 +1,4 @@
-namespace MMX.CoreSystem
+namespace MMX.VisualEffectSystem
 {
     public sealed class ExplosionPoolSystemDictionary : AbstractPoolSystemDictionary<ExplosionType> { }
 }

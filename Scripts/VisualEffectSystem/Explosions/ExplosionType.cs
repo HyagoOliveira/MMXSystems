@@ -1,4 +1,4 @@
-namespace MMX.CoreSystem
+namespace MMX.VisualEffectSystem
 {
     /// <summary>
     /// All explosion types in the game.

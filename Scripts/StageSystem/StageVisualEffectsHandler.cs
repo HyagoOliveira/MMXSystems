@@ -1,5 +1,5 @@
-using MMX.CoreSystem;
 using UnityEngine;
+using MMX.VisualEffectSystem;
 
 namespace MMX.StageSystem
 {
@@ -10,17 +10,19 @@ namespace MMX.StageSystem
 
         private void OnEnable()
         {
-            GameEvents.OnHitPlaced += HandleHitPlaced;
-            GameEvents.OnExplosionPlaced += HandleExplosionPlaced;
+            VisualEffectManager.OnHitPlaced += HandleHitPlaced;
+            VisualEffectManager.OnExplosionPlaced += HandleExplosionPlaced;
         }
 
         private void OnDisable()
         {
-            GameEvents.OnHitPlaced -= HandleHitPlaced;
-            GameEvents.OnExplosionPlaced -= HandleExplosionPlaced;
+            VisualEffectManager.OnHitPlaced -= HandleHitPlaced;
+            VisualEffectManager.OnExplosionPlaced -= HandleExplosionPlaced;
         }
 
-        private void HandleHitPlaced(HitType hit, Vector3 position, Vector3 rotation) => hits.Place(hit, position, rotation);
-        private void HandleExplosionPlaced(ExplosionType explosion, Transform place) => explosions.Place(explosion, place);
+        private void HandleHitPlaced(HitType hit, Vector3 position, Vector3 rotation) =>
+            hits.Place(hit, position, rotation);
+        private void HandleExplosionPlaced(ExplosionType explosion, Vector3 position, Vector3 rotation) =>
+            explosions.Place(explosion, position, rotation);
     }
 }

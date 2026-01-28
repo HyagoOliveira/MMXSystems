@@ -1,4 +1,4 @@
-namespace MMX.CoreSystem
+namespace MMX.VisualEffectSystem
 {
     /// <summary>
     /// All Hit types in the game.

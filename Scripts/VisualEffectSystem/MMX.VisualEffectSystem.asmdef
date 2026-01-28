@@ -1,7 +1,10 @@
 {
-    "name": "MMX.CoreSystem",
-    "rootNamespace": "MMX.CoreSystem",
-    "references": [],
+    "name": "MMX.VisualEffectSystem",
+    "rootNamespace": "MMX.VisualEffectSystem",
+    "references": [
+        "GUID:b560acc0f7203b748bb8eb898876002b",
+        "GUID:b6d604d366204e3498891d6d6ba5936e"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
